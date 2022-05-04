@@ -1,1 +1,1 @@
-# hibernate
+# Hibernate learning notes
