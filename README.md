@@ -11,7 +11,7 @@
 ![](./images/Screen%20Shot%202022-05-06%20at%205.59.32%20AM.png)
 >https://mvnrepository.com/artifact/org.projectlombok/lombok-maven-plugin
 
-### Add 
+### Add annotated class to hibernate
 ![](./images/Screen%20Shot%202022-05-06%20at%206.27.50%20AM.png)
 ![](./images/Screen%20Shot%202022-05-06%20at%206.28.06%20AM.png)
 
