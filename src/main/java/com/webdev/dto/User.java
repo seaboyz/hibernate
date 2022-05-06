@@ -1,19 +1,16 @@
 package com.webdev.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
+@Entity(name = "users")
 public @Data class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private @Getter int id;
-
+    private @Getter @Setter int id;
     private @Getter @Setter String username;
     private @Getter @Setter String password;
     private @Getter @Setter String email;
