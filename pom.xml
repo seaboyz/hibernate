@@ -49,6 +49,14 @@
       <scope>provided</scope>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-testing -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-testing</artifactId>
+      <version>5.6.8.Final</version>
+      <scope>test</scope>
+    </dependency>
+
 
   </dependencies>
 

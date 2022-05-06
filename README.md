@@ -33,7 +33,11 @@
 
 ### use column anotation to name db column
 ![](./images/Screen%20Shot%202022-05-06%20at%209.57.56%20AM.png)
-![]()
+
+### Hibernate Testing
+![](/images/Screen%20Shot%202022-05-06%20at%2011.54.48%20AM.png)
+>https://trello.com/c/LjsCTeyj/11-hibernate
+
 ![]()
 ![]()
 ![]()
