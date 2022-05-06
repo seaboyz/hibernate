@@ -2,40 +2,54 @@ package com.webdev.dto;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 // singular table name
 // @Table(name = "[user]")
 // plural table name
 @Table(name = "users")
-public @Data class User {
+public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String username;
-    private String password;
-    @Column(name = "")
-    private String email;
+
+    private @Getter @Setter String username;
+
+    private @Getter @Setter String password;
+
+    private @Getter @Setter String email;
+
     @Column(name = "first_name")
-    private String firstName;
+    private @Getter @Setter String firstName;
+
     @Column(name = "last_name")
     private String lastName;
+
     @Column(name = "full_name")
     private String fullName;
+
     @Column(name = "phone_number")
     private String phoneNumber;
-    private String address;
-    private String city;
-    private String state;
-    private String zip;
+
+    private @Getter @Setter String address;
+
+    private @Getter @Setter String city;
+
+    private @Getter @Setter String state;
+
+    private @Getter @Setter String zip;
 
     public User() {
     }
 
-    public User(int id,
+    public User(
             String username,
             String password,
             String email,
@@ -46,7 +60,6 @@ public @Data class User {
             String city,
             String state,
             String zip) {
-        this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
@@ -59,5 +72,4 @@ public @Data class User {
         this.state = state;
         this.zip = zip;
     }
-
 }
