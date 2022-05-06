@@ -21,11 +21,18 @@
 ![](./images/Screen%20Shot%202022-05-06%20at%206.27.50%20AM.png)
 ![](./images/Screen%20Shot%202022-05-06%20at%206.28.06%20AM.png)
 
+### create a seesion factory session and user session to save model
 ![](./images/Screen%20Shot%202022-05-06%20at%206.39.06%20AM.png)
-### create a sesstion fatory
+![](images/Screen%20Shot%202022-05-06%20at%209.43.35%20AM.png)
 
-![]()
-![]()
+### `@Entity(name="table_name"` vs `@Table(name"table_name")`
+![](./images/Screen%20Shot%202022-05-06%20at%209.54.13%20AM.png)
+
+### create a singular name table
+![](./images/Screen%20Shot%202022-05-06%20at%209.57.56%20AM.png)
+
+### use column anotation to name db column
+![](./images/Screen%20Shot%202022-05-06%20at%209.57.56%20AM.png)
 ![]()
 ![]()
 ![]()
