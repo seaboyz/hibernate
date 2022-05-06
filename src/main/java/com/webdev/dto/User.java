@@ -6,8 +6,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity
 // singular table name
@@ -16,19 +14,50 @@ import lombok.Setter;
 @Table(name = "users")
 public @Data class User {
     @Id
-    private @Getter @Setter int id;
-    private @Getter @Setter String username;
-    private @Getter @Setter String password;
-    @Column(name="")
-    private @Getter @Setter String email;
+    private int id;
+    private String username;
+    private String password;
+    @Column(name = "")
+    private String email;
     @Column(name = "first_name")
-    private @Getter @Setter String firstName;
+    private String firstName;
     @Column(name = "last_name")
-    private @Getter @Setter String lastName;
+    private String lastName;
+    @Column(name = "full_name")
+    private String fullName;
     @Column(name = "phone_number")
-    private @Getter @Setter String phoneNumber;
-    private @Getter @Setter String address;
-    private @Getter @Setter String city;
-    private @Getter @Setter String state;
-    private @Getter @Setter String zip;
+    private String phoneNumber;
+    private String address;
+    private String city;
+    private String state;
+    private String zip;
+
+    public User() {
+    }
+
+    public User(int id,
+            String username,
+            String password,
+            String email,
+            String firstName,
+            String lastName,
+            String phoneNumber,
+            String address,
+            String city,
+            String state,
+            String zip) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.fullName = firstName + " " + lastName;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+    }
+
 }
