@@ -1,5 +1,6 @@
 package com.webdev;
 
+import com.webdev.dto.Address;
 import com.webdev.dto.User;
 
 import org.hibernate.Session;
@@ -8,9 +9,9 @@ import org.hibernate.cfg.Configuration;
 
 public class App {
     public static void main(String[] args) {
-        /* 
-        * Save user to database
-        */
+        /*
+         * Save user to database
+         */
         User user = new User(
                 "test",
                 "123456",
@@ -18,10 +19,11 @@ public class App {
                 "John",
                 "Doe",
                 "5555555555",
-                "123 Main St",
-                "Anytown",
-                "TX",
-                "12345");
+                new Address(
+                        "123 Main St",
+                        "Anytown",
+                        "TX",
+                        "12345"));
 
         // Create a configuration object
         Configuration cfg = new Configuration();

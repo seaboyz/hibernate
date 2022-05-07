@@ -1,9 +1,9 @@
 package com.webdev.dto;
 
-import java.sql.Date;
 import java.util.UUID;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,20 +12,25 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 // singular table name
 // @Table(name = "[user]")
 // plural table name
 @Table(name = "users")
-public @ToString class User {
+public @NoArgsConstructor class User {
+    // primary key
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    // use UUID generator
+    // @GeneratedValue(generator = "UUID")
+    // @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    // use traditional generator
+    @GeneratedValue
+    // column name
     @Column(name = "id", updatable = false, nullable = false)
-    private UUID id;
+    private @Getter Integer id;
 
     private @Getter @Setter String username;
 
@@ -45,19 +50,8 @@ public @ToString class User {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    private @Getter @Setter String address;
-
-    private @Getter @Setter String city;
-
-    private @Getter @Setter String state;
-
-    private @Getter @Setter String zip;
-
-    @Column(name = "created_at")
-    private Date createdAt;
-
-    public User() {
-    }
+    @Embedded
+    private @Getter @Setter Address address;
 
     public User(
             String username,
@@ -66,10 +60,7 @@ public @ToString class User {
             String firstName,
             String lastName,
             String phoneNumber,
-            String address,
-            String city,
-            String state,
-            String zip) {
+            Address address) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -78,10 +69,6 @@ public @ToString class User {
         this.fullName = firstName + " " + lastName;
         this.phoneNumber = phoneNumber;
         this.address = address;
-        this.city = city;
-        this.state = state;
-        this.zip = zip;
-        this.createdAt = new Date(System.currentTimeMillis());
     }
 
 }

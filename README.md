@@ -46,6 +46,15 @@ username is not saved in database
 
 #### UUID
 ![](./images/Screen%20Shot%202022-05-07%20at%204.33.11%20AM.png)
+![](images/Screen%20Shot%202022-05-07%20at%206.24.57%20AM.png)
+>https://thorben-janssen.com/generate-uuids-primary-keys-hibernate/
+
+
+#### value object vs entity object
+- value object: has no meaning without other object (address,cart)
+- entity object: can exist independently (user, order, product)
+- edge case: think about a order can be created by a guest(without register as a user)
+- so the order has to be independent from user
 ![]()
 ![]()
 ![]()
