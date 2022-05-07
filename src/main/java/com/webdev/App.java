@@ -63,7 +63,7 @@ public class App {
         user = (User) session.get(User.class, 1);
 
         // print the user
-        System.out.println(user);
+        System.out.println(user.getAddress().getCity());
 
     }
 }

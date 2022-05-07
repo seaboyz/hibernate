@@ -49,6 +49,9 @@ username is not saved in database
 ![](images/Screen%20Shot%202022-05-07%20at%206.24.57%20AM.png)
 >https://thorben-janssen.com/generate-uuids-primary-keys-hibernate/
 
+#### interger Id
+![](images/Screen%20Shot%202022-05-07%20at%2010.04.35%20AM.png)
+
 
 #### value object vs entity object
 - value object: has no meaning without other object (address,cart)
