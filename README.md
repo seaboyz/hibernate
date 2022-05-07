@@ -43,7 +43,9 @@
 username is not saved in database
 ![](./images/Screen%20Shot%202022-05-06%20at%209.11.14%20PM.png)
 ![](./images/Screen%20Shot%202022-05-06%20at%209.12.51%20PM.png)
-![]()
+
+#### UUID
+![](./images/Screen%20Shot%202022-05-07%20at%204.33.11%20AM.png)
 ![]()
 ![]()
 ![]()
