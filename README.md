@@ -39,8 +39,10 @@
 ![](/images/Screen%20Shot%202022-05-06%20at%2011.54.48%20AM.png)
 >https://trello.com/c/LjsCTeyj/11-hibernate
 
-![]()
-![]()
+#### @Transient
+username is not saved in database
+![](./images/Screen%20Shot%202022-05-06%20at%209.11.14%20PM.png)
+![](./images/Screen%20Shot%202022-05-06%20at%209.12.51%20PM.png)
 ![]()
 ![]()
 ![]()
