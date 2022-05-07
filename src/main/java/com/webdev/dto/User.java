@@ -1,5 +1,7 @@
 package com.webdev.dto;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,12 +11,14 @@ import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 // singular table name
 // @Table(name = "[user]")
 // plural table name
 @Table(name = "users")
+@ToString
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,6 +50,9 @@ public class User {
 
     private @Getter @Setter String zip;
 
+    @Column(name = "created_at")
+    private Date createdAt;
+
     public User() {
     }
 
@@ -71,5 +78,7 @@ public class User {
         this.city = city;
         this.state = state;
         this.zip = zip;
+        this.createdAt = new Date(System.currentTimeMillis());
     }
+
 }

@@ -8,11 +8,14 @@ import org.hibernate.cfg.Configuration;
 
 public class App {
     public static void main(String[] args) {
+        /* 
+        * Save user to database
+        */
         User user = new User(
                 "test",
                 "123456",
                 "test@test.com",
-                "John", 
+                "John",
                 "Doe",
                 "5555555555",
                 "123 Main St",
@@ -41,5 +44,24 @@ public class App {
 
         // close session
         session.close();
+
+        /*
+         * Read the user from the database
+         */
+
+        user = null;
+
+        // create a session
+        session = sessionFactory.openSession();
+
+        // start a transaction
+        session.beginTransaction();
+
+        // retrieve the user
+        user = (User) session.get(User.class, 1);
+
+        // print the user
+        System.out.println(user);
+
     }
 }
