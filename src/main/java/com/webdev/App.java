@@ -1,7 +1,7 @@
 package com.webdev;
 
 import com.webdev.model.Address;
-import com.webdev.model.User;
+import com.webdev.model.Customer;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -27,7 +27,7 @@ public class App {
         session.beginTransaction();
 
         // create a new user
-        User user = new User(
+        Customer customer = new Customer(
                 "John Doe",
                 "john@example.com",
                 "password",
@@ -42,10 +42,10 @@ public class App {
                 "USA");
 
         // add the address to the user
-        user.addAddress(address);
+        customer.addAddress(address);
 
         // save the user
-        session.save(user);
+        session.save(customer);
 
         // save the address
         session.save(address);

@@ -43,11 +43,11 @@ public class Address {
 
     // many-to-one relationship
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
     // end of many-to-one relationship
 

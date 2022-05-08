@@ -13,8 +13,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "[user]")
-public class User {
+@Table(name = "[customer]")
+public class Customer {
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -34,19 +34,19 @@ public class User {
     private String phoneNumber;
 
     // one-to-many relationship
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "customer")
     private Set<Address> addresses = new java.util.HashSet<Address>();
 
     public void addAddress(Address address) {
         this.addresses.add(address);
-        address.setUser(this);
+        address.setCustomer(this);
     }
     // end of one-to-many relationship
 
-    public User() {
+    public Customer() {
     }
 
-    public User(String name, String email, String password, String phoneNumber) {
+    public Customer(String name, String email, String password, String phoneNumber) {
         this.name = name;
         this.email = email;
         this.password = password;
