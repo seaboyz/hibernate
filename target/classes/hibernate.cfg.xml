@@ -20,6 +20,7 @@
 
         <!-- Names the annotated entity class -->
         <mapping class="com.webdev.dto.User" />
+        <mapping class="com.webdev.dto.Address" />
 
     </session-factory>
 </hibernate-configuration>

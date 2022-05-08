@@ -1,5 +1,6 @@
 package com.webdev;
 
+import com.webdev.dto.Address;
 import com.webdev.dto.User;
 
 import org.hibernate.Session;
@@ -32,8 +33,19 @@ public class App {
                 "password",
                 "123-456-7890");
 
+        Address address = new Address(
+                "123 Main St",
+                "Apt. 1",
+                "Anytown",
+                "CA",
+                "90210",
+                "USA");
+
         // save the user
         session.save(user);
+
+        // save the address
+        session.save(address);
 
         // commit the transaction
         session.getTransaction().commit();
