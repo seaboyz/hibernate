@@ -3,6 +3,7 @@ package com.webdev;
 import java.util.UUID;
 
 import com.webdev.model.Address;
+import com.webdev.model.Cart;
 import com.webdev.model.Customer;
 
 import org.hibernate.Session;
@@ -65,6 +66,12 @@ public class App {
 
                 // add the address to the customer
                 customer.addAddress(address2);
+
+                // create a new cart
+                Cart cart = new Cart();
+
+                // save the cart
+                session.save(cart);
 
                 // save the user
                 session.save(customer);

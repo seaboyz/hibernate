@@ -21,6 +21,7 @@
         <!-- Names the annotated entity class -->
         <mapping class="com.webdev.model.Customer" />
         <mapping class="com.webdev.model.Address" />
+        <mapping class="com.webdev.model.Cart" />
 
     </session-factory>
 </hibernate-configuration>

@@ -34,8 +34,8 @@ public class Customer {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    // one-to-many relationship
-    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
+    // one-to-many relationship with address
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     private Set<Address> addresses = new java.util.HashSet<Address>();
 
     public void addAddress(Address address) {
@@ -46,7 +46,7 @@ public class Customer {
     public Set<Address> getAddresses() {
         return addresses;
     }
-    // end of one-to-many relationship
+    // end of one-to-many relationship with address
 
     public Customer() {
     }

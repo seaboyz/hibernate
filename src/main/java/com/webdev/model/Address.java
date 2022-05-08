@@ -23,6 +23,20 @@ public class Address {
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
+    // many-to-one relationship with Customer
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+    // end of many-to-one relationship with Customer
+
     @Column(name = "first_street_line")
     private String street;
 
@@ -40,20 +54,6 @@ public class Address {
 
     @Column(name = "country")
     private String country;
-
-    // many-to-one relationship
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-    // end of many-to-one relationship
 
     public Address() {
     }
