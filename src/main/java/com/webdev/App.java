@@ -1,8 +1,5 @@
 package com.webdev;
 
-import java.util.UUID;
-
-import com.webdev.model.Address;
 import com.webdev.model.Cart;
 import com.webdev.model.Customer;
 
@@ -38,34 +35,34 @@ public class App {
 
                 // create a new address
 
-                Address address = new Address(
+               /*  Address address = new Address(
                                 "123 Main St",
                                 "Apt. 1",
                                 "Anytown",
                                 "CA",
                                 "90210",
-                                "USA");
+                                "USA"); */
 
                 // save the address
-                session.save(address);
+                // session.save(address);
 
                 // add the address to the user
-                customer.addAddress(address);
+                // customer.addAddress(address);
 
                 // add another address
-                Address address2 = new Address(
+               /*  Address address2 = new Address(
                                 "456 Main St",
                                 "",
                                 "AnyCity",
                                 "TX",
                                 "78610",
-                                "USA");
+                                "USA"); */
 
                 // save the address
-                session.save(address2);
+                // session.save(address2);
 
                 // add the address to the customer
-                customer.addAddress(address2);
+                // customer.addAddress(address2);
 
                 // create a new cart
                 Cart cart = new Cart();
@@ -86,19 +83,19 @@ public class App {
                 session.close();
 
                 // start a new session
-                session = sessionFactory.openSession();
+                // session = sessionFactory.openSession();
 
                 // get customer id
-                UUID id = customer.getId();
+                // UUID id = customer.getId();
 
                 // get the customer by id 1
-                customer = session.get(Customer.class, id);
+                // customer = session.get(Customer.class, id);
 
                 // print the customer
-                System.out.println(customer);
+                // System.out.println(customer);
 
                 // close the session
-                session.close();
+                // session.close();
 
         }
 }
