@@ -58,8 +58,16 @@ username is not saved in database
 - entity object: can exist independently (user, order, product)
 - edge case: think about a order can be created by a guest(without register as a user)
 - so the order has to be independent from user
-![]()
-![]()
+
+### relationships
+#### one-to-many
+ * always add foreign key at the many side.
+ * one user has many addresses
+ * on the many side: addresses side add the foreign key user.id
+ * one-side (user)
+![](./images/Screen%20Shot%202022-05-07%20at%207.45.01%20PM.png)
+* to-many-side (address)
+![](./images/Screen%20Shot%202022-05-07%20at%207.47.44%20PM.png)
 ![]()
 ![]()
 ![]()

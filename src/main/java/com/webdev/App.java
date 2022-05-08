@@ -1,6 +1,5 @@
 package com.webdev;
 
-import com.webdev.dto.Address;
 import com.webdev.dto.User;
 
 import org.hibernate.Session;
@@ -9,61 +8,38 @@ import org.hibernate.cfg.Configuration;
 
 public class App {
     public static void main(String[] args) {
-        /*
-         * Save user to database
-         */
-        User user = new User(
-                "test",
-                "123456",
-                "test@test.com",
-                "John",
-                "Doe",
-                "5555555555",
-                new Address(
-                        "123 Main St",
-                        "Anytown",
-                        "TX",
-                        "12345"));
 
-        // Create a configuration object
-        Configuration cfg = new Configuration();
+        // configure the database
+        Configuration config = new Configuration();
 
-        // Create a session factory object
-        SessionFactory sessionFactory = cfg.configure().buildSessionFactory();
+        // if no configuration file is found, use the default
+        // config.configure("hibernate.cfg.xml");
+        config.configure();
 
-        // create a session
+        // build the session factory
+        SessionFactory sessionFactory = config.buildSessionFactory();
+
+        // get the session
         Session session = sessionFactory.openSession();
 
         // start a transaction
         session.beginTransaction();
 
+        // create a new user
+        User user = new User(
+                "John Doe",
+                "john@example.com",
+                "password",
+                "123-456-7890");
+
         // save the user
-        // session.save(user) is deprecated
         session.save(user);
 
-        // commit transaction
+        // commit the transaction
         session.getTransaction().commit();
 
-        // close session
+        // close the session
         session.close();
-
-        /*
-         * Read the user from the database
-         */
-
-        user = null;
-
-        // create a session
-        session = sessionFactory.openSession();
-
-        // start a transaction
-        session.beginTransaction();
-
-        // retrieve the user
-        user = (User) session.get(User.class, 1);
-
-        // print the user
-        System.out.println(user.getAddress().getCity());
 
     }
 }

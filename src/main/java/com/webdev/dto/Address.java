@@ -1,17 +1,100 @@
 package com.webdev.dto;
 
-import javax.persistence.Embeddable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+@Entity
+@Table(name = "addresses")
+public class Address {
 
-@Embeddable
-public @NoArgsConstructor @AllArgsConstructor @ToString class Address {
-    private @Getter @Setter String street;
-    private @Getter @Setter String city;
-    private @Getter @Setter String state;
-    private @Getter @Setter String zip;
+    @Id // primary key
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // use traditional generator
+    private int id;
+
+    @Column(name = "first_street_line")
+    private String street;
+
+    @Column(name = "second_street_line")
+    private String street2;
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "state")
+    private String state;
+
+    @Column(name = "zip")
+    private String zip;
+
+    @Column(name = "country")
+    private String country;
+
+    public Address() {
+    }
+
+    public Address(String street, String street2, String city, String state, String zip, String country) {
+        this.street = street;
+        this.street2 = street2;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.country = country;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getStreet2() {
+        return street2;
+    }
+
+    public void setStreet2(String street2) {
+        this.street2 = street2;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
 }
