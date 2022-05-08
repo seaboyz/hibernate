@@ -87,8 +87,19 @@ username is not saved in database
 ![](./images/Screen%20Shot%202022-05-08%20at%2010.13.30%20AM.png)
 
 ### Unidierctional one-to-many
+* Customer
+  customer object has `getAddresses()` to access the addresses list
+![](./images/Screen%20Shot%202022-05-08%20at%2010.33.03%20AM.png)
+* Address
+  address object knows nothing about the the customer object. it does not know which customer itself belongs to.
+* database
+  the database schemas are same for both `Bidirectional` and `Unidirectional` `One-To-Many` 
+![](/images/Screen%20Shot%202022-05-08%20at%2010.33.41%20AM.png)
+![](./images/Screen%20Shot%202022-05-08%20at%2011.04.44%20AM.png)
 
-![]()
+### Unidierctional vs Bidirectional
+It's only from the hibernate...ORM, database schema, does not change. which one to use, it depends one, the user story.
+* if user story need to check all the users use one specific address, then we need to add both @OneToMany for the customer side, and add @ManyToOne to the address side.
 ![]()
 ![]()
 ![]()
