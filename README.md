@@ -100,7 +100,10 @@ username is not saved in database
 ### Unidierctional vs Bidirectional
 It's only from the hibernate...ORM, database schema, does not change. which one to use, it depends one, the user story.
 * if user story need to check all the users use one specific address, then we need to add both @OneToMany for the customer side, and add @ManyToOne to the address side.
-![]()
+
+### CRUD
+#### READ
+![](/images/Screen%20Shot%202022-05-08%20at%2012.27.34%20PM.png)
 ![]()
 ![]()
 ![]()

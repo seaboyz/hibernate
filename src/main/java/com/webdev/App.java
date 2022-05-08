@@ -1,5 +1,7 @@
 package com.webdev;
 
+import java.util.UUID;
+
 import com.webdev.model.Address;
 import com.webdev.model.Customer;
 
@@ -73,8 +75,20 @@ public class App {
                 // close the session
                 session.close();
 
-                for (Address a : customer.getAddresses()) {
-                        System.out.println(a.getStreet());
-                }
+                // start a new session
+                session = sessionFactory.openSession();
+
+                // get customer id
+                UUID id = customer.getId();
+
+                // get the customer by id 1
+                customer = session.get(Customer.class, id);
+
+                // print the customer
+                System.out.println(customer);
+
+                // close the session
+                session.close();
+
         }
 }
