@@ -106,10 +106,19 @@ It's only from the hibernate...ORM, database schema, does not change. which one 
 ![](/images/Screen%20Shot%202022-05-08%20at%2012.27.34%20PM.png)
 
 #### Lazy vs Eager(customer side)
-* lazy: only when we need to access the address object, it will be loaded from the database.
+* lazy: only when we need to access the address object(`customer.getAddresses()`), it will be loaded from the database.
 ![](/images/Screen%20Shot%202022-05-08%20at%2012.48.51%20PM.png)
 ![](/images/Screen%20Shot%202022-05-08%20at%2012.48.23%20PM.png)
 * eager: load the address object when the customer object is loaded
 ![](/images/Screen%20Shot%202022-05-08%20at%2012.49.18%20PM.png)
 ![](/images/Screen%20Shot%202022-05-08%20at%2012.49.39%20PM.png)
+#### Proxy
+![](/images/Screen%20Shot%202022-05-08%20at%201.29.09%20PM.png)
+
+### One to One
+![]()
+![]()
+![]()
+![]()
+![]()
 ![]()
