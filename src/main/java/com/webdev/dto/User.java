@@ -1,10 +1,13 @@
 package com.webdev.dto;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -26,6 +29,16 @@ public class User {
 
     @Column(name = "phone_number")
     private String phoneNumber;
+
+    // one-to-many relationship
+    @OneToMany(mappedBy = "user")
+    private Set<Address> addresses = new java.util.HashSet<Address>();
+
+    public void addAddress(Address address) {
+        this.addresses.add(address);
+        address.setUser(this);
+    }
+    // end of one-to-many relationship
 
     public User() {
     }

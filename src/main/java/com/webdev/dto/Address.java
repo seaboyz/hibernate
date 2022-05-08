@@ -2,9 +2,12 @@ package com.webdev.dto;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -32,6 +35,16 @@ public class Address {
 
     @Column(name = "country")
     private String country;
+
+    // many-to-one relationship
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+    // end of many-to-one relationship
 
     public Address() {
     }

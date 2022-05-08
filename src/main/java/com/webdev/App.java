@@ -41,11 +41,11 @@ public class App {
                 "90210",
                 "USA");
 
+        // add the address to the user
+        user.addAddress(address);
+
         // save the user
         session.save(user);
-
-        // save the address
-        session.save(address);
 
         // commit the transaction
         session.getTransaction().commit();
