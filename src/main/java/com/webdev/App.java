@@ -47,6 +47,9 @@ public class App {
         // save the user
         session.save(user);
 
+        // save the address
+        session.save(address);
+
         // commit the transaction
         session.getTransaction().commit();
 
