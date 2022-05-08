@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -34,7 +35,7 @@ public class Customer {
     private String phoneNumber;
 
     // one-to-many relationship
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
     private Set<Address> addresses = new java.util.HashSet<Address>();
 
     public void addAddress(Address address) {
