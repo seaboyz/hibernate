@@ -89,4 +89,8 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
+    public Set<Address> getAddresses() {
+        return addresses;
+    }
+
 }

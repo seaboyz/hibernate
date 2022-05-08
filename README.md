@@ -70,8 +70,10 @@ username is not saved in database
 ![](./images/Screen%20Shot%202022-05-07%20at%207.47.44%20PM.png)
 ![](./images/Screen%20Shot%202022-05-07%20at%208.52.09%20PM.png)
 ![](/images/Screen%20Shot%202022-05-07%20at%208.51.41%20PM.png)
-![]()
-![]()
+
+#### Add two addresses to one user
+![](./images/Screen%20Shot%202022-05-08%20at%209.13.35%20AM.png)
+![](./images/Screen%20Shot%202022-05-08%20at%209.15.53%20AM.png)
 ![]()
 ![]()
 ![]()

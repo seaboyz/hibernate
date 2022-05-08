@@ -8,53 +8,73 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 public class App {
-    public static void main(String[] args) {
+        public static void main(String[] args) {
 
-        // configure the database
-        Configuration config = new Configuration();
+                // configure the database
+                Configuration config = new Configuration();
 
-        // if no configuration file is found, use the default
-        // config.configure("hibernate.cfg.xml");
-        config.configure();
+                // if no configuration file is found, use the default
+                // config.configure("hibernate.cfg.xml");
+                config.configure();
 
-        // build the session factory
-        SessionFactory sessionFactory = config.buildSessionFactory();
+                // build the session factory
+                SessionFactory sessionFactory = config.buildSessionFactory();
 
-        // get the session
-        Session session = sessionFactory.openSession();
+                // get the session
+                Session session = sessionFactory.openSession();
 
-        // start a transaction
-        session.beginTransaction();
+                // start a transaction
+                session.beginTransaction();
 
-        // create a new user
-        Customer customer = new Customer(
-                "John Doe",
-                "john@example.com",
-                "password",
-                "123-456-7890");
+                // create a new user
+                Customer customer = new Customer(
+                                "John Doe",
+                                "john@example.com",
+                                "password",
+                                "123-456-7890");
 
-        Address address = new Address(
-                "123 Main St",
-                "Apt. 1",
-                "Anytown",
-                "CA",
-                "90210",
-                "USA");
+                // create a new address
 
-        // add the address to the user
-        customer.addAddress(address);
+                Address address = new Address(
+                                "123 Main St",
+                                "Apt. 1",
+                                "Anytown",
+                                "CA",
+                                "90210",
+                                "USA");
 
-        // save the user
-        session.save(customer);
+                // save the address
+                session.save(address);
 
-        // save the address
-        session.save(address);
+                // add the address to the user
+                customer.addAddress(address);
 
-        // commit the transaction
-        session.getTransaction().commit();
+                // add another address
+                Address address2 = new Address(
+                                "456 Main St",
+                                "",
+                                "AnyCity",
+                                "TX",
+                                "78610",
+                                "USA");
 
-        // close the session
-        session.close();
+                // save the address
+                session.save(address2);
 
-    }
+                // add the address to the customer
+                customer.addAddress(address2);
+
+                // save the user
+                session.save(customer);
+
+                // commit the transaction
+                session.getTransaction().commit();
+
+                // close the session
+                session.close();
+
+                for (Address a : customer.getAddresses()) {
+                        System.out.println(a.getStreet());
+                }
+        }
 }
