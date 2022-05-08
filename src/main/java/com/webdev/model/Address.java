@@ -38,15 +38,6 @@ public class Address {
     @Column(name = "country")
     private String country;
 
-    // many-to-one relationship
-    // @ManyToOne(optional = false)
-    // private Customer customer;
-
-    // public void setCustomer(Customer customer) {
-    //     this.customer = customer;
-    // }
-    // end of many-to-one relationship
-
     public Address() {
     }
 
