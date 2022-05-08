@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -34,12 +35,12 @@ public class Customer {
     private String phoneNumber;
 
     // one-to-many relationship
-    @OneToMany(mappedBy = "customer")
+    @OneToMany
+    @JoinColumn(name = "customer_id")
     private Set<Address> addresses = new java.util.HashSet<Address>();
 
     public void addAddress(Address address) {
         this.addresses.add(address);
-        address.setCustomer(this);
     }
     // end of one-to-many relationship
 
