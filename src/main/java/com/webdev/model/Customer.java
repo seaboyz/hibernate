@@ -41,6 +41,10 @@ public class Customer {
         this.addresses.add(address);
         address.setCustomer(this);
     }
+
+    public Set<Address> getAddresses() {
+        return addresses;
+    }
     // end of one-to-many relationship
 
     public Customer() {
@@ -89,8 +93,6 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
-    public Set<Address> getAddresses() {
-        return addresses;
-    }
+    
 
 }

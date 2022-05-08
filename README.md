@@ -74,9 +74,20 @@ username is not saved in database
 #### Add two addresses to one user
 ![](./images/Screen%20Shot%202022-05-08%20at%209.13.35%20AM.png)
 ![](./images/Screen%20Shot%202022-05-08%20at%209.15.53%20AM.png)
-![]()
-![]()
-![]()
+
+### Bidirectional one-to-many
+* Customer
+  customer has the `getAddresses()` to access the addresses list
+![](/images/Screen%20Shot%202022-05-08%20at%2010.26.50%20AM.png)
+![](./images/Screen%20Shot%202022-05-08%20at%2010.13.07%20AM.png)
+
+* Address
+  address has `setCustomer()` and `getCustomer()` to access the customer object
+![](./images/Screen%20Shot%202022-05-08%20at%2010.22.58%20AM.png)
+![](./images/Screen%20Shot%202022-05-08%20at%2010.13.30%20AM.png)
+
+### Unidierctional one-to-many
+
 ![]()
 ![]()
 ![]()
