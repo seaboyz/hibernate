@@ -19,8 +19,8 @@
         <property name="hibernate.hbm2ddl.auto">create</property>
 
         <!-- Names the annotated entity class -->
-        <mapping class="com.webdev.dto.User" />
-        <mapping class="com.webdev.dto.Address" />
+        <mapping class="com.webdev.model.User" />
+        <mapping class="com.webdev.model.Address" />
 
     </session-factory>
 </hibernate-configuration>

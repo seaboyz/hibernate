@@ -1,4 +1,4 @@
-package com.webdev.dto;
+package com.webdev.model;
 
 import java.util.Set;
 import java.util.UUID;

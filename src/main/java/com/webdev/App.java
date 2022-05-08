@@ -1,7 +1,7 @@
 package com.webdev;
 
-import com.webdev.dto.Address;
-import com.webdev.dto.User;
+import com.webdev.model.Address;
+import com.webdev.model.User;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
