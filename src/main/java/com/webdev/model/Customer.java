@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -35,7 +36,7 @@ public class Customer {
     private String phoneNumber;
 
     // one-to-many relationship
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "customer_id")
     private Set<Address> addresses = new java.util.HashSet<Address>();
 
@@ -92,6 +93,12 @@ public class Customer {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password
+                + ", phoneNumber=" + phoneNumber + "]";
     }
 
 }
