@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -50,7 +51,7 @@ public class Customer {
     // * end of one-to-many relationship with address >>>
 
     // * <<< one-to-one relationship with cart
-    @OneToOne
+    @OneToOne(mappedBy = "customer", fetch = FetchType.LAZY)
     private Cart cart;
 
     public Cart getCart() {
@@ -59,6 +60,7 @@ public class Customer {
 
     public void setCart(Cart cart) {
         this.cart = cart;
+        cart.setCustomer(this);
     }
     // * end of one-to-one relationship with cart >>>
 

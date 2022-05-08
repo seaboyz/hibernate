@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -23,4 +25,18 @@ public class Cart {
     public UUID getId() {
         return id;
     }
+
+    // * <<< one-to-one relationship with customer
+    @OneToOne()
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+    // * end of one-to-one relationship with customer >>>
 }

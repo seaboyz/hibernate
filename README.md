@@ -127,7 +127,21 @@ It's only from the hibernate...ORM, database schema, does not change. which one 
 * database cart as a foreign key in the customer table
 ![](/images/Screen%20Shot%202022-05-08%20at%205.06.46%20PM.png)
 
-#### 2. Unidirectional one-to-one 
+#### 2. Bidirectional one-to-one 
 (customer_id is the foreign key in the cart table)
+* add one-to-one relationship in the Customer class
+![](/images/Screen%20Shot%202022-05-08%20at%205.26.28%20PM.png)
+* add one-to-one relationship in the Cart class
+![](/images/Screen%20Shot%202022-05-08%20at%205.26.39%20PM.png)
+* add cart to customer
+![](/images/Screen%20Shot%202022-05-08%20at%205.27.04%20PM.png)
+* database customer_id as a foreign key in the cart table
+![](/images/Screen%20Shot%202022-05-08%20at%205.25.56%20PM.png)
+![]()
+![]()
+![]()
+![]()
+![]()
+![]()
 ![]()
 ![]()
