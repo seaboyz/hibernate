@@ -70,6 +70,9 @@ public class App {
                 // create a new cart
                 Cart cart = new Cart();
 
+                // set the cart for the customer
+                customer.setCart(cart);
+
                 // save the cart
                 session.save(cart);
 

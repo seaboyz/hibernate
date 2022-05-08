@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -34,7 +35,7 @@ public class Customer {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    // one-to-many relationship with address
+    // * <<< one-to-many relationship with address
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     private Set<Address> addresses = new java.util.HashSet<Address>();
 
@@ -46,7 +47,20 @@ public class Customer {
     public Set<Address> getAddresses() {
         return addresses;
     }
-    // end of one-to-many relationship with address
+    // * end of one-to-many relationship with address >>>
+
+    // * <<< one-to-one relationship with cart
+    @OneToOne
+    private Cart cart;
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+    // * end of one-to-one relationship with cart >>>
 
     public Customer() {
     }
