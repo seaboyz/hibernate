@@ -1,7 +1,6 @@
 package com.webdev;
 
-import com.webdev.model.Cart;
-import com.webdev.model.Customer;
+import com.webdev.model.Product;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -27,11 +26,11 @@ public class App {
                 session.beginTransaction();
 
                 // create a new user
-                Customer customer = new Customer(
+                /* Customer customer = new Customer(
                                 "John Doe",
                                 "john@example.com",
                                 "password",
-                                "123-456-7890");
+                                "123-456-7890"); */
 
                 // create a new address
 
@@ -65,22 +64,22 @@ public class App {
                 // customer.addAddress(address2);
 
                 // create a new cart
-                Cart cart = new Cart();
+                // Cart cart = new Cart();
 
                 // set the cart for the customer
-                customer.setCart(cart);
+                // customer.setCart(cart);
 
                 // save the cart
-                session.save(cart);
+                // session.save(cart);
 
                 // save the user
-                session.save(customer);
+                // session.save(customer);
 
                 // commit the transaction
-                session.getTransaction().commit();
+                // session.getTransaction().commit();
 
                 // close the session
-                session.close();
+                // session.close();
 
                 // start a new session
                 // session = sessionFactory.openSession();
@@ -94,8 +93,22 @@ public class App {
                 // print the customer
                 // System.out.println(customer);
 
+                // create a new product
+                Product product = new Product(
+                                "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+                                "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+                                109.95,
+                                "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+                                "men's clothing");
+
+                // save product
+                session.save(product);
+
+                // commit the transaction
+                session.getTransaction().commit();
+
                 // close the session
-                // session.close();
+                session.close();
 
         }
 }
