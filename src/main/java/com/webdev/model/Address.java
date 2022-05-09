@@ -60,7 +60,7 @@ public class Address {
     public Address() {
     }
 
-    public Address(String street, String street2, String city, String state, String zip, String country) {
+    public Address(String name,String street, String street2, String city, String state, String zip, String country) {
         this.street = street;
         this.street2 = street2;
         this.city = city;
