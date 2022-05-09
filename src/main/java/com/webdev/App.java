@@ -34,7 +34,8 @@ public class App {
                                 "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
                                 "men's clothing");
 
-                cart.addProduct(product);
+                cart.addProduct(product,2);
+
 
                 // * the end of the java code >>>
 

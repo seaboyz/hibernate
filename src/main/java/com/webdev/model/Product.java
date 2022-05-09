@@ -38,12 +38,12 @@ public class Product {
     private String category;
 
     // * <<< many-to-many relationship with cart
-    @ManyToMany(mappedBy = "products")
-    private Set<Cart> carts = new HashSet<Cart>();
+    // @ManyToMany(mappedBy = "products")
+    // private Set<Cart> carts = new HashSet<Cart>();
 
-    public void addToCart(Cart cart) {
-        carts.add(cart);
-    }
+    // public void addToCart(Cart cart) {
+    // carts.add(cart);
+    // }
 
     // * end of many-to-many relationship with cart >>>
 

@@ -1,7 +1,7 @@
 package com.webdev.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -44,16 +44,16 @@ public class Cart {
     }
     // * end of one-to-one relationship with customer >>>
 
-    // * <<< one-to-many relationship with product
+    // * <<< many-to-many relationship with product
     @ManyToMany
     @JoinTable(name = "cart_item", joinColumns = @JoinColumn(name = "cart_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private Set<Product> products = new HashSet<Product>();
+    private List<Product> products = new ArrayList<Product>();
 
-    public Set<Product> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(Set<Product> products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 
@@ -61,5 +61,10 @@ public class Cart {
         products.add(product);
     }
 
-    // * end of one-to-many relationship with cart_item >>>
+    public void addProduct(Product product, int quantity) {
+        for (int i = 0; i < quantity; i++) {
+            products.add(product);
+        }
+    }
+
 }
