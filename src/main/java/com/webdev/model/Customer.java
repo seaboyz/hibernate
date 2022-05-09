@@ -37,7 +37,7 @@ public class Customer {
     private String phoneNumber;
 
     // * <<< one-to-many relationship with address
-    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "customer")
     private Set<Address> addresses = new HashSet<Address>();
 
     public void addAddress(Address address) {
@@ -63,7 +63,6 @@ public class Customer {
         cart.setCustomer(this);
     }
     // * end of one-to-one relationship with cart >>>
-
 
     public Customer() {
     }

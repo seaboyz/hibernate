@@ -4,7 +4,6 @@ import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -23,8 +22,8 @@ public class Address {
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
-    // many-to-one relationship with Customer
-    @ManyToOne(fetch = FetchType.LAZY)
+    // * <<< many-to-one relationship with Customer
+    @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
@@ -35,7 +34,10 @@ public class Address {
     public Customer getCustomer() {
         return customer;
     }
-    // end of many-to-one relationship with Customer
+    // * end of many-to-one relationship with Customer >>>
+
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "first_street_line")
     private String street;
@@ -73,6 +75,14 @@ public class Address {
 
     public String getStreet() {
         return street;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setStreet(String street) {
@@ -118,5 +128,11 @@ public class Address {
     public void setCountry(String country) {
         this.country = country;
     }
+
+    @Override
+    public String toString() {
+        return "Address [id=" + id + ", street=" + street + ", street2=" + street2 + ", city=" + city + ", state=" + state + ", zip=" + zip + ", country=" + country + "]";
+    }
+
 
 }
