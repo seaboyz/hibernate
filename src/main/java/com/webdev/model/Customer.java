@@ -64,6 +64,15 @@ public class Customer {
     }
     // * end of one-to-one relationship with cart >>>
 
+    // * <<< one-to-many relationship with order
+    @OneToMany(mappedBy = "customer")
+    private Set<Order> orders = new HashSet<Order>();
+
+    public void addOrder(Order order) {
+        this.orders.add(order);
+        order.setCustomer(this);
+    }
+
     public Customer() {
     }
 
