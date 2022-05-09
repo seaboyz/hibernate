@@ -66,5 +66,6 @@ public class Cart {
             products.add(product);
         }
     }
+    // * end of many-to-many relationship with product >>>
 
 }

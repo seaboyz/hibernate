@@ -1,6 +1,8 @@
 package com.webdev.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -38,12 +40,12 @@ public class Product {
     private String category;
 
     // * <<< many-to-many relationship with cart
-    // @ManyToMany(mappedBy = "products")
-    // private Set<Cart> carts = new HashSet<Cart>();
+    @ManyToMany(mappedBy = "products")
+    private List<Cart> carts = new ArrayList<>();
 
-    // public void addToCart(Cart cart) {
-    // carts.add(cart);
-    // }
+    public void addToCart(Cart cart) {
+        carts.add(cart);
+    }
 
     // * end of many-to-many relationship with cart >>>
 

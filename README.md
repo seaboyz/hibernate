@@ -154,11 +154,13 @@ It's only from the hibernate...ORM, database schema, does not change. which one 
 * one cart has many products
 * one prouct can be in many carts
 #### 1. Unidirectional @ManyToMany
-
 * add many-to-many relationship in the Cart class
-![]()
-![]()
-![]()
+![](/images/Screen%20Shot%202022-05-09%20at%2012.02.29%20AM.png)
+![](/images/Screen%20Shot%202022-05-09%20at%2012.01.43%20AM.png)
+
+#### 2. Bidirectional @ManyToMany
+![](/images/Screen%20Shot%202022-05-09%20at%2012.02.29%20AM.png)
+![](./images/Screen%20Shot%202022-05-09%20at%2012.06.32%20AM.png)
 ![]()
 ![]()
 ![]()
