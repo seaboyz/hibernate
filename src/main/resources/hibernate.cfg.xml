@@ -23,6 +23,7 @@
         <mapping class="com.webdev.model.Address" />
         <mapping class="com.webdev.model.Cart" />
         <mapping class="com.webdev.model.Product" />
+        <mapping class="com.webdev.model.Order" />
 
     </session-factory>
 </hibernate-configuration>
