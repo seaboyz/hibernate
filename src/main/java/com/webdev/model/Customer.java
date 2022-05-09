@@ -1,5 +1,6 @@
 package com.webdev.model;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -37,7 +38,7 @@ public class Customer {
 
     // * <<< one-to-many relationship with address
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
-    private Set<Address> addresses = new java.util.HashSet<Address>();
+    private Set<Address> addresses = new HashSet<Address>();
 
     public void addAddress(Address address) {
         this.addresses.add(address);
@@ -62,6 +63,7 @@ public class Customer {
         cart.setCustomer(this);
     }
     // * end of one-to-one relationship with cart >>>
+
 
     public Customer() {
     }

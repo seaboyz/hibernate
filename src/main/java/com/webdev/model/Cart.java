@@ -1,5 +1,7 @@
 package com.webdev.model;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -7,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -39,4 +43,23 @@ public class Cart {
         this.customer = customer;
     }
     // * end of one-to-one relationship with customer >>>
+
+    // * <<< one-to-many relationship with product
+    @ManyToMany
+    @JoinTable(name = "cart_item", joinColumns = @JoinColumn(name = "cart_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
+    private Set<Product> products = new HashSet<Product>();
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
+
+    public void addProduct(Product product) {
+        products.add(product);
+    }
+
+    // * end of one-to-many relationship with cart_item >>>
 }

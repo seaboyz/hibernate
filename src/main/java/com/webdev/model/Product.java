@@ -1,11 +1,14 @@
 package com.webdev.model;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -33,6 +36,16 @@ public class Product {
 
     @Column(name = "category")
     private String category;
+
+    // * <<< many-to-many relationship with cart
+    @ManyToMany(mappedBy = "products")
+    private Set<Cart> carts = new HashSet<Cart>();
+
+    public void addToCart(Cart cart) {
+        carts.add(cart);
+    }
+
+    // * end of many-to-many relationship with cart >>>
 
     public Product() {
     }

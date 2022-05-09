@@ -60,7 +60,7 @@ username is not saved in database
 - so the order has to be independent from user
 
 ### relationships
-#### one-to-many
+#### @OneToMany
  * always add foreign key at the many side.
  * one user has many addresses
  * on the many side: addresses side add the foreign key user.id
@@ -75,18 +75,25 @@ username is not saved in database
 ![](./images/Screen%20Shot%202022-05-08%20at%209.13.35%20AM.png)
 ![](./images/Screen%20Shot%202022-05-08%20at%209.15.53%20AM.png)
 
-### Bidirectional one-to-many
+### Bidirectional @OneToMany
+#### @OneToMany(mappedBy = "customer") 
+1.  ***the relationship is on the other side (address-side)***
+2.  ***the foreign key is on the other side (address-side)***
+3.  ***many addddreses belong to one customer***
 * Customer
   customer has the `getAddresses()` to access the addresses list
 ![](/images/Screen%20Shot%202022-05-08%20at%2010.26.50%20AM.png)
 ![](./images/Screen%20Shot%202022-05-08%20at%2010.13.07%20AM.png)
 
+
+#### @ManyToOne
+#### @JoinColumn(name = "customer_id") - foreign key name in the address table
 * Address
   address has `setCustomer()` and `getCustomer()` to access the customer object
 ![](./images/Screen%20Shot%202022-05-08%20at%2010.22.58%20AM.png)
 ![](./images/Screen%20Shot%202022-05-08%20at%2010.13.30%20AM.png)
 
-### Unidierctional one-to-many
+### Unidierctional @OneToMany
 * Customer
   customer object has `getAddresses()` to access the addresses list
 ![](./images/Screen%20Shot%202022-05-08%20at%2010.33.03%20AM.png)
@@ -94,6 +101,7 @@ username is not saved in database
   address object knows nothing about the the customer object. it does not know which customer itself belongs to.
 * database
   the database schemas are same for both `Bidirectional` and `Unidirectional` `One-To-Many` 
+
 ![](/images/Screen%20Shot%202022-05-08%20at%2010.33.41%20AM.png)
 ![](./images/Screen%20Shot%202022-05-08%20at%2011.04.44%20AM.png)
 
@@ -106,17 +114,21 @@ It's only from the hibernate...ORM, database schema, does not change. which one 
 ![](/images/Screen%20Shot%202022-05-08%20at%2012.27.34%20PM.png)
 
 #### Lazy vs Eager(customer side)
+
+##### fetch = FetchType.LAZY
 * lazy: only when we need to access the address object(`customer.getAddresses()`), it will be loaded from the database.
 ![](/images/Screen%20Shot%202022-05-08%20at%2012.48.51%20PM.png)
 ![](/images/Screen%20Shot%202022-05-08%20at%2012.48.23%20PM.png)
+
+#### fetch = FetchType.EAGER
 * eager: load the address object when the customer object is loaded
 ![](/images/Screen%20Shot%202022-05-08%20at%2012.49.18%20PM.png)
 ![](/images/Screen%20Shot%202022-05-08%20at%2012.49.39%20PM.png)
 #### Proxy
 ![](/images/Screen%20Shot%202022-05-08%20at%201.29.09%20PM.png)
 
-### One to One
-#### 1. Unidirectional one-to-one 
+### @OneToOne
+#### 1. Unidirectional @OneToOne
 (cart_id is the foreign key in the customer table)
 * add cart to hibernate configuration
 ![](./images/Screen%20Shot%202022-05-08%20at%205.07.02%20PM.png)
@@ -127,7 +139,7 @@ It's only from the hibernate...ORM, database schema, does not change. which one 
 * database cart as a foreign key in the customer table
 ![](/images/Screen%20Shot%202022-05-08%20at%205.06.46%20PM.png)
 
-#### 2. Bidirectional one-to-one 
+#### 2. Bidirectional @OneToOne
 (customer_id is the foreign key in the cart table)
 * add one-to-one relationship in the Customer class
 ![](/images/Screen%20Shot%202022-05-08%20at%205.26.28%20PM.png)
@@ -137,6 +149,13 @@ It's only from the hibernate...ORM, database schema, does not change. which one 
 ![](/images/Screen%20Shot%202022-05-08%20at%205.27.04%20PM.png)
 * database customer_id as a foreign key in the cart table
 ![](/images/Screen%20Shot%202022-05-08%20at%205.25.56%20PM.png)
+
+### @ManyToMany
+* one cart has many products
+* one prouct can be in many carts
+#### 1. Unidirectional @ManyToMany
+
+* add many-to-many relationship in the Cart class
 ![]()
 ![]()
 ![]()
