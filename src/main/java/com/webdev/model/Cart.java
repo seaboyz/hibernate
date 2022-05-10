@@ -35,10 +35,6 @@ public class Cart {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
@@ -52,7 +48,6 @@ public class Cart {
     public List<Product> getProducts() {
         return products;
     }
-    
 
     public void addProduct(Product product) {
         products.add(product);

@@ -6,7 +6,6 @@ import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -51,7 +50,7 @@ public class Customer {
     // * end of one-to-many relationship with address >>>
 
     // * <<< one-to-one relationship with cart
-    @OneToOne(mappedBy = "customer", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "customer")
     private Cart cart;
 
     public Cart getCart() {
@@ -71,7 +70,8 @@ public class Customer {
     public void addOrder(Order order) {
         this.orders.add(order);
         order.setCustomer(this);
-    }
+    } 
+    // * end of one-to-many relationship with order >>>
 
     public Customer() {
     }
