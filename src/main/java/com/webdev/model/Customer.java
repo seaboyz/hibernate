@@ -70,7 +70,7 @@ public class Customer {
     public void addOrder(Order order) {
         this.orders.add(order);
         order.setCustomer(this);
-    } 
+    }
     // * end of one-to-many relationship with order >>>
 
     public Customer() {

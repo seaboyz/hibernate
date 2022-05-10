@@ -1,7 +1,7 @@
 package com.webdev;
 
-import com.webdev.model.Cart;
 import com.webdev.model.Customer;
+import com.webdev.model.Order;
 import com.webdev.model.Product;
 
 import org.hibernate.Session;
@@ -20,11 +20,8 @@ public class App {
                                 "password",
                                 "123-456-7890");
 
-                // create a new cart
-                Cart cart = new Cart();
-
-                // set the cart for the customer
-                customer.setCart(cart);
+                // create a new order
+                Order order = new Order();
 
                 // create a new product
                 Product product = new Product(
@@ -34,7 +31,7 @@ public class App {
                                 "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
                                 "men's clothing");
 
-                cart.addProduct(product, 2);
+                order.addProduct(product, 2);
 
                 // * the end of the java code >>>
 
@@ -60,7 +57,7 @@ public class App {
                 session.save(customer);
 
                 // save the cart
-                session.save(cart);
+                session.save(order);
 
                 // save the product
                 session.save(product);
