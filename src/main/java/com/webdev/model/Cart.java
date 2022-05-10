@@ -17,7 +17,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "[cart]")
+@Table(name = "carts")
 public class Cart {
     // id is the primary key
     @Id

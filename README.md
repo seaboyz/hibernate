@@ -60,8 +60,48 @@ username is not saved in database
 - so the order has to be independent from user
 
 ### relationships
+### What is a relationship?
+* A relationship is a link between two objects(Entity).
+* https://www.youtube.com/watch?v=C3icLzBtg8I
+
+#### Entity
+* An entity in DBMS (Database management System) is a real-world thing or a real-world object which is distinguishable from other objects in the real world. For example, a car is an entity. An attribute of an entity gives us information about the characteristic features of an entity.
+* Customer is an entity.
+* Address is an entity.
+* Product is an entity.
+* Cart is an entity.
+* CartItem is an entity.
+* Order is an entity.
+* OrderItem is an entity.
+
+#### user story
+##### Place a order
+* when customer buy a product, frontend will create a cart
+* then customer can add product to cart, then the frontend will create a cart item with product id and quantity
+* before customer checkout, the frontend will never talk to backend
+* all the cart_item(product_id, quantity) will be saved in the frontend local storage/session storage/cookie storage
+<br>
+* when customer checkout, he/she has to provide address and payment information.
+* frontend will get the cart_item(product_id and quantity) from local storage/session storage/cookie storage
+* frontend will create an json object with customer_id,  product_id, quantity, shipping_address and payment_info, send it to backend
+<br>
+* when backend receive the json object, it will create an order with customer_id, shipping_address and payment_info
+* first backend will create a empty order with order_id and customer_id and pending status
+* then backend will create a order_item with order_id, product_id, quantity,subtotal and save it in the database
+* then backend will update the total in the order table based on the subtotal of the order_item
+* then after backend verify the payment information, backend will update the status of the order to paid
+* backend will send a json object with order_id, customer_id, shipping_address, payment_info, status, total, order_items to the frontend
+<br>
+* after frontend receive the json object with the order infomation from the backend, it will clear the cart_item in the local storage/session storage/cookie storage
+* show the customer order received message
+
+#### JPA (Java Persistence API) @Entity
+* Entities in JPA are nothing but POJOs representing data that can be persisted to the database. 
+* An entity represents a table stored in a database. 
+* Every instance of an entity represents a row in the table.
+
 #### @OneToMany
- * always add foreign key at the many side.
+ * ##### always add foreign key at the many side.
  * one user has many addresses
  * on the many side: addresses side add the foreign key user.id
  * one-side (user)
@@ -164,7 +204,7 @@ It's only from the hibernate...ORM, database schema, does not change. which one 
 
 #### 3. ManyToMany with @JoinTable with additional columns
 ![](./images/Screen%20Shot%202022-05-09%20at%209.35.31%20PM.png)
-* Product-side
+* Product-side(optional - if we want to get all orders of a certain product from the product side)
 ![](./images/Screen%20Shot%202022-05-09%20at%2011.19.42%20PM.png)
 * OrderDetail-side
 ![](./images/Screen%20Shot%202022-05-09%20at%2011.20.38%20PM.png)

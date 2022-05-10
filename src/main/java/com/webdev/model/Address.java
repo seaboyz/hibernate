@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "[address]")
+@Table(name = "addresses")
 public class Address {
 
     @Id // primary key

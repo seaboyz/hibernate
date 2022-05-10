@@ -2,7 +2,6 @@ package com.webdev.model;
 
 import java.util.UUID;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,8 +12,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "[order_detail]")
-public class OrderDetail {
+@Table(name = "order_items")
+public class OrderItem {
     @Id // primary key
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
@@ -28,16 +27,14 @@ public class OrderDetail {
     @JoinColumn(name = "order_id")
     private Order order;
 
-    @Column(name = "quantity")
     private int quantity;
 
-    @Column(name = "price")
     private double subtotal;
 
-    public OrderDetail() {
+    public OrderItem() {
     }
 
-    public OrderDetail(Product product, Order order, int quantity, double subtotal) {
+    public OrderItem(Product product, Order order, int quantity, double subtotal) {
         this.product = product;
         this.order = order;
         this.quantity = quantity;

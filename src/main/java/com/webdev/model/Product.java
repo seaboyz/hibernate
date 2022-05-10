@@ -1,20 +1,15 @@
 package com.webdev.model;
 
-import java.util.HashSet;
-import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "[product]")
 public class Product {
     @Id // primary key
     @GeneratedValue(generator = "UUID")
@@ -22,23 +17,15 @@ public class Product {
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
-    @Column(name = "name")
     private String name;
 
-    @Column(name = "description")
     private String description;
 
-    @Column(name = "price")
     private double price;
 
-    @Column(name = "image")
     private String image;
 
-    @Column(name = "category")
     private String category;
-
-    @OneToMany(mappedBy = "product")
-    private Set<OrderDetail> orderDetails = new HashSet<OrderDetail>();
 
     public Product() {
     }

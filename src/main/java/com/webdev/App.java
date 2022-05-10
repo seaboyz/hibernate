@@ -69,12 +69,12 @@ public class App {
                 // save the cart
                 session.save(order);
 
+                // save order details
+                order.getOrderDetails().forEach(orderDetail -> session.save(orderDetail));
+
                 // save the product
                 session.save(product1);
                 session.save(product2);
-
-                // save order details
-                order.getOrderDetails().forEach(orderDetail -> session.save(orderDetail));
 
                 // commit the transaction
                 session.getTransaction().commit();

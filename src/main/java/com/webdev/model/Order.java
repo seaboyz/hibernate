@@ -17,7 +17,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "[order]")
+@Table(name = "orders")
 public class Order {
 
     @Id // primary key
@@ -31,13 +31,12 @@ public class Order {
     private Customer customer;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private Set<OrderDetail> orderDetails = new HashSet<OrderDetail>();
+    private Set<OrderItem> orderDetails = new HashSet<OrderItem>();
 
     // todo: implement shipment
 
     // todo: implement payment_method
 
-    @Column(name = "total")
     private double total;
 
     public Order() {
@@ -59,12 +58,20 @@ public class Order {
         return customer;
     }
 
-    public Set<OrderDetail> getOrderDetails() {
+    public Set<OrderItem> getOrderDetails() {
         return orderDetails;
     }
 
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
     public void addProduct(Product product, int quantity) {
-        OrderDetail orderDetail = new OrderDetail(product, this, quantity, product.getPrice() * quantity);
+        OrderItem orderDetail = new OrderItem(product, this, quantity, product.getPrice() * quantity);
         orderDetails.add(orderDetail);
         total += orderDetail.getSubtotal();
     }
