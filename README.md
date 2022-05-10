@@ -161,6 +161,21 @@ It's only from the hibernate...ORM, database schema, does not change. which one 
 #### 2. Bidirectional @ManyToMany
 ![](/images/Screen%20Shot%202022-05-09%20at%2012.02.29%20AM.png)
 ![](./images/Screen%20Shot%202022-05-09%20at%2012.06.32%20AM.png)
+
+#### 3. ManyToMany with @JoinTable with additional columns
+![](./images/Screen%20Shot%202022-05-09%20at%209.35.31%20PM.png)
+* Product-side
+![](./images/Screen%20Shot%202022-05-09%20at%2011.19.42%20PM.png)
+* OrderDetail-side
+![](./images/Screen%20Shot%202022-05-09%20at%2011.20.38%20PM.png)
+![](/images/Screen%20Shot%202022-05-09%20at%2011.20.57%20PM.png)
+* Order-side
+![](/images/Screen%20Shot%202022-05-09%20at%2011.21.17%20PM.png)
+![](/images/Screen%20Shot%202022-05-09%20at%2011.22.11%20PM.png)
+* database
+![](./images/Screen%20Shot%202022-05-09%20at%2011.30.01%20PM.png)
+![]()
+![]()
 ![]()
 ![]()
 ![]()

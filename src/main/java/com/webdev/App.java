@@ -21,17 +21,27 @@ public class App {
                                 "123-456-7890");
 
                 // create a new order
-                Order order = new Order();
+                Order order = new Order(customer);
 
                 // create a new product
-                Product product = new Product(
+                Product product1 = new Product(
                                 "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
                                 "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
                                 109.95,
                                 "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
                                 "men's clothing");
 
-                order.addProduct(product, 2);
+                // create another new product
+                Product product2 = new Product(
+                                "Mens Cotton Jacket",
+                                "great outerwear jackets for Spring/Autumn/Winter, made of 100% cotton",
+                                55.99,
+                                "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
+                                "men's clothing");
+
+                // add produc to the order
+                order.addProduct(product1, 1);
+                order.addProduct(product2, 2);
 
                 // * the end of the java code >>>
 
@@ -60,7 +70,11 @@ public class App {
                 session.save(order);
 
                 // save the product
-                session.save(product);
+                session.save(product1);
+                session.save(product2);
+
+                // save order details
+                order.getOrderDetails().forEach(orderDetail -> session.save(orderDetail));
 
                 // commit the transaction
                 session.getTransaction().commit();

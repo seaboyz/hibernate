@@ -35,7 +35,6 @@ public class Customer {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    // * <<< one-to-many relationship with address
     @OneToMany(mappedBy = "customer")
     private Set<Address> addresses = new HashSet<Address>();
 
@@ -47,9 +46,7 @@ public class Customer {
     public Set<Address> getAddresses() {
         return addresses;
     }
-    // * end of one-to-many relationship with address >>>
 
-    // * <<< one-to-one relationship with cart
     @OneToOne(mappedBy = "customer")
     private Cart cart;
 
@@ -61,17 +58,9 @@ public class Customer {
         this.cart = cart;
         cart.setCustomer(this);
     }
-    // * end of one-to-one relationship with cart >>>
 
-    // * <<< one-to-many relationship with order
     @OneToMany(mappedBy = "customer")
     private Set<Order> orders = new HashSet<Order>();
-
-    public void addOrder(Order order) {
-        this.orders.add(order);
-        order.setCustomer(this);
-    }
-    // * end of one-to-many relationship with order >>>
 
     public Customer() {
     }
