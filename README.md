@@ -61,6 +61,7 @@ username is not saved in database
 
 ### relationships
 ### What is a relationship?
+![](/images/Screen%20Shot%202022-05-10%20at%209.18.12%20AM.png)
 * A relationship is a link between two objects(Entity).
 * https://www.youtube.com/watch?v=C3icLzBtg8I
 
@@ -73,6 +74,24 @@ username is not saved in database
 * CartItem is an entity.
 * Order is an entity.
 * OrderItem is an entity.
+
+#### relationship
+* `one` customer has `many` addresses
+* `one` address belongs to `one` customer
+
+* `one` customer has `many` orders
+* `one` order belongs to `one` customer
+
+* `one` order has many `order` items
+* `one` order_item belongs to `one` order
+  
+* `one` order_item has `one` product
+* `one` product belongs `many` order_item
+
+* `one` customer has `one` cart
+* `one` cart belongs to `one` customer
+
+
 
 #### user story
 ##### Place a order
