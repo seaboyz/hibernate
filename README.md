@@ -172,6 +172,10 @@ It's only from the hibernate...ORM, database schema, does not change. which one 
 #### READ
 ![](/images/Screen%20Shot%202022-05-08%20at%2012.27.34%20PM.png)
 
+<!-- TODO CREATE -->
+<!-- TODO UPDATE -->
+<!-- TODO DELETE -->
+
 #### Lazy vs Eager(customer side)
 
 ##### fetch = FetchType.LAZY
@@ -233,6 +237,7 @@ It's only from the hibernate...ORM, database schema, does not change. which one 
 ![](/images/Screen%20Shot%202022-05-09%20at%2011.22.11%20PM.png)
 * database
 ![](./images/Screen%20Shot%202022-05-09%20at%2011.30.01%20PM.png)
+
 ![]()
 ![]()
 ![]()
