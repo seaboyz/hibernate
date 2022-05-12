@@ -238,6 +238,17 @@ It's only from the hibernate...ORM, database schema, does not change. which one 
 * database
 ![](./images/Screen%20Shot%202022-05-09%20at%2011.30.01%20PM.png)
 
+##### mvn exec
+<plugin>
+    <groupId>org.codehaus.mojo</groupId>
+    <artifactId>exec-maven-plugin</artifactId>
+    <version>3.0.0</version>
+    <configuration>
+        <mainClass>com.webdev</mainClass>
+    </configuration>
+</plugin>
+`mvn exec:java -Dexec.mainClass="com.webdev.App`
+
 ![]()
 ![]()
 ![]()
