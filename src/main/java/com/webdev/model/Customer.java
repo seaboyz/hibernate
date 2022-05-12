@@ -13,6 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name = "customers")
@@ -25,6 +26,7 @@ public class Customer {
 
     private String name;
 
+    @NaturalId
     private String email;
 
     private String password;
