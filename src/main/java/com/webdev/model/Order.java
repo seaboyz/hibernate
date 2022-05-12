@@ -42,13 +42,13 @@ public class Order {
 
     // shipping address
     @Embedded
-    private ShippingAddress shippingAddress;
+    private Address shippingAddress;
 
     // todo: implement payment_method
 
     private double total;
 
-    public Order(Customer customer, ShippingAddress shippingAddress, double total) {
+    public Order(Customer customer, Address shippingAddress, double total) {
         this.customer = customer;
         this.shippingAddress = shippingAddress;
         this.total = total;
