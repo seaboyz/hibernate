@@ -1,5 +1,12 @@
 # Hibernate learning notes
 
+### xml configuration 
+![](images/Screen%20Shot%202022-05-12%20at%203.50.26%20PM.png)
+![](images/Screen%20Shot%202022-05-06%20at%209.43.35%20AM.png)
+
+### pragrammatic configuration
+![](images/Screen%20Shot%202022-05-12%20at%203.46.39%20PM.png)
+
 #### Add maven dependency
 
 #### hibernate
