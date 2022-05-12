@@ -32,18 +32,19 @@ public class Customer {
 
     @Column(name = "phone_number")
     private String phoneNumber;
-
-    @OneToMany(mappedBy = "customer")
+    
+    // when save the customer, if there are any unsaved addresses, save them
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.PERSIST)
     private Set<Address> addresses = new HashSet<Address>();
-
-    public void addAddress(Address address) {
-        this.addresses.add(address);
-        address.setCustomer(this);
-    }
 
     public Set<Address> getAddresses() {
         return addresses;
     }
+
+    // public void addAddress(Address address) {
+    // this.addresses.add(address);
+    // address.setCustomer(this);
+    // }
 
     @OneToMany(mappedBy = "customer")
     private Set<CartItem> cartItems = new HashSet<CartItem>();

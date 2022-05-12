@@ -22,7 +22,6 @@ public class Address {
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
-    // * <<< many-to-one relationship with Customer
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
@@ -30,7 +29,6 @@ public class Address {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
-    // * end of many-to-one relationship with Customer >>>
 
     @Column(name = "first_name")
     private String firstName;
