@@ -53,7 +53,8 @@ public class App {
                 customer.addAddress(address);
 
                 // create a shipping address
-                ShippingAddress shippingAddress = com.webdev.utils.Address.createShippingAddress("John", "Doe", address);
+                ShippingAddress shippingAddress = com.webdev.utils.Address.createShippingAddress("John", "Doe",
+                                address);
 
                 // create a new order
                 Order order = new Order(
