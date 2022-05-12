@@ -192,14 +192,6 @@ https://www.youtube.com/watch?v=rvaAx7r8lVY
 It's only from the hibernate...ORM, database schema, does not change. which one to use, it depends one, the user story.
 * if user story need to check all the users use one specific address, then we need to add both @OneToMany for the customer side, and add @ManyToOne to the address side.
 
-### CRUD
-#### READ
-![](/images/Screen%20Shot%202022-05-08%20at%2012.27.34%20PM.png)
-
-<!-- TODO CREATE -->
-<!-- TODO UPDATE -->
-<!-- TODO DELETE -->
-
 #### Lazy vs Eager(customer side)
 
 ##### fetch = FetchType.LAZY
@@ -273,6 +265,34 @@ It's only from the hibernate...ORM, database schema, does not change. which one 
 </plugin>
 `mvn exec:java -Dexec.mainClass="com.webdev.App`
 
+### Dao (Data Access Object)
+he Data Access Object Pattern, aka DAO Pattern, is an abstraction of data persistence and is considered closer to the underlying storage, which is often `table-centric`.
+![](images/Screen%20Shot%202022-05-12%20at%205.45.36%20AM.png)
+
+### Repository (Data Access Object)
+As per Eric Evans' book Domain-Driven Design, the “repository is a mechanism for encapsulating storage, retrieval, and search behavior, which emulates a `collection` of objects.”
+Likewise, according to Patterns of Enterprise Application Architecture, it “mediates between the domain and data mapping layers using a collection-like interface for accessing domain objects.”
+![](images/Screen%20Shot%202022-05-12%20at%205.46.07%20AM.png)
+
+### Dao + Repository
+![](/images/Screen%20Shot%202022-05-12%20at%205.51.19%20A M.png)
+![](images/Screen%20Shot%202022-05-12%20at%205.52.23%20AM.png)'
+Then, it aggregates both sets of information and provides a domain object of the UserSocialMedia class that is handy for our business use-case. Therefore, a repository relies on DAOs for accessing data from various sources.
+
+### Dao vs Repository
+* `DAO` is an abstraction of `data persistence`. However, a `repository` is an abstraction of a `collection` of objects
+* `DAO` is a `lower-level` concept, closer to the storage systems. However, `Repository` is a `higher-level` concept, closer  to the Domain objects
+* `DAO` works as a data `mapping/access` layer, hiding ugly queries. However, a `repository` is a layer between `domains` and `data access layers`, hiding the complexity of collating data and preparing a domain object
+* `DAO` `can't be implemented` using a repository. However, a repository can use a DAO for accessing underlying storage
+
+
+#### CRUD
+#### READ
+![](/images/Screen%20Shot%202022-05-08%20at%2012.27.34%20PM.png)
+
+<!-- TODO CREATE -->
+<!-- TODO UPDATE -->
+<!-- TODO DELETE -->
 
 ![]()
 ![]()
