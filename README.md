@@ -136,6 +136,8 @@ https://www.youtube.com/watch?v=rvaAx7r8lVY
 * after frontend receive the json object with the order infomation from the backend, it will clear the cart_item in the local storage/session storage/cookie storage
 * show the customer order received message
 
+# Can a pendding order be in the cart?
+
 #### JPA (Java Persistence API) @Entity
 * Entities in JPA are nothing but POJOs representing data that can be persisted to the database. 
 * An entity represents a table stored in a database. 

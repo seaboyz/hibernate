@@ -1,10 +1,8 @@
 package com.webdev;
 
-import com.webdev.model.Address;
+import com.webdev.model.CartItem;
 import com.webdev.model.Customer;
-import com.webdev.model.Order;
 import com.webdev.model.Product;
-import com.webdev.model.ShippingAddress;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,17 +20,6 @@ public class App {
                                 "password",
                                 "123-456-7890");
 
-                // create a new address
-                Address address = new Address(
-                                "John",
-                                "Doe",
-                                "123 Main St",
-                                "Apt. 2A",
-                                "Anytown",
-                                "CA",
-                                "90210",
-                                "USA");
-
                 // create a new product
                 Product product1 = new Product(
                                 "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
@@ -49,20 +36,15 @@ public class App {
                                 "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
                                 "men's clothing");
 
-                // set the address to the customer
-                customer.addAddress(address);
+                // create a cartItem
+                CartItem cartItem = new CartItem(product1, 1);
 
-                // create a shipping address
-                ShippingAddress shippingAddress = com.webdev.utils.Address.createShippingAddress("John", "Doe",
-                                address);
+                // create another cartItem
+                CartItem cartItem2 = new CartItem(product2, 2);
 
-                // create a new order
-                Order order = new Order(
-                                customer,
-                                shippingAddress,
-                                100.00);
-                order.addProduct(product1, 1);
-                order.addProduct(product2, 2);
+                // add the cartItem to the customer's cart
+                customer.addCartItem(cartItem);
+                customer.addCartItem(cartItem2);
 
                 // * the end of the java code >>>
 
@@ -86,10 +68,10 @@ public class App {
 
                 // save the customer
                 session.save(customer);
-                session.save(address);
                 session.save(product1);
                 session.save(product2);
-                session.save(order);
+                session.save(cartItem);
+                session.save(cartItem2);
 
                 // commit the transaction
                 session.getTransaction().commit();
