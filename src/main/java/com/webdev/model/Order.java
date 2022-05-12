@@ -1,9 +1,11 @@
 package com.webdev.model;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -14,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -26,22 +29,26 @@ public class Order {
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
+    @Column(name = "created_at")
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private Set<OrderItem> orderDetails = new HashSet<OrderItem>();
 
     // shipping address
     @Embedded
-    private Address shippingAddress;
+    private ShippingAddress shippingAddress;
 
     // todo: implement payment_method
 
     private double total;
 
-    public Order(Customer customer, Address shippingAddress, double total) {
+    public Order(Customer customer, ShippingAddress shippingAddress, double total) {
         this.customer = customer;
         this.shippingAddress = shippingAddress;
         this.total = total;
