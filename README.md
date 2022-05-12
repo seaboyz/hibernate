@@ -249,10 +249,16 @@ It's only from the hibernate...ORM, database schema, does not change. which one 
 </plugin>
 `mvn exec:java -Dexec.mainClass="com.webdev.App`
 
+#### Primary Key
 ##### @NatualId
 * When new Customer registers, the email should be unique, otherwise, it will throw an exception.
 ![](/images/Screen%20Shot%202022-05-11%20at%208.24.38%20PM.png)
 ![](/images/Screen%20Shot%202022-05-11%20at%208.24.12%20PM.png)
+
+##### @Id
+##### @GeneratedValue(strategy = GenerationType.AUTO)
+##### @Genericgenerator(name = "generator", strategy = "native")
+https://www.youtube.com/watch?v=rvaAx7r8lVY
 ![]()
 ![]()
 ![]()
