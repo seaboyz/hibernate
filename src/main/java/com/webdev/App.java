@@ -1,8 +1,6 @@
 package com.webdev;
 
 import com.webdev.model.Customer;
-import com.webdev.model.Order;
-import com.webdev.model.Product;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -20,28 +18,11 @@ public class App {
                                 "password",
                                 "123-456-7890");
 
-                // create a new order
-                Order order = new Order(customer);
-
-                // create a new product
-                Product product1 = new Product(
-                                "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-                                "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-                                109.95,
-                                "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-                                "men's clothing");
-
-                // create another new product
-                Product product2 = new Product(
-                                "Mens Cotton Jacket",
-                                "great outerwear jackets for Spring/Autumn/Winter, made of 100% cotton",
-                                55.99,
-                                "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
-                                "men's clothing");
-
-                // add produc to the order
-                order.addProduct(product1, 1);
-                order.addProduct(product2, 2);
+                Customer customer2 = new Customer(
+                                "John Gao",
+                                "john@example.com",
+                                "123456",
+                                "555-555-5555");
 
                 // * the end of the java code >>>
 
@@ -65,16 +46,7 @@ public class App {
 
                 // save the customer
                 session.save(customer);
-
-                // save the cart
-                session.save(order);
-
-                // save order details
-                order.getOrderDetails().forEach(orderDetail -> session.save(orderDetail));
-
-                // save the product
-                session.save(product1);
-                session.save(product2);
+                session.save(customer2);
 
                 // commit the transaction
                 session.getTransaction().commit();
