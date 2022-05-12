@@ -32,8 +32,11 @@ public class Address {
     }
     // * end of many-to-one relationship with Customer >>>
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
 
     @Column(name = "first_street_line")
     private String street;
@@ -41,22 +44,21 @@ public class Address {
     @Column(name = "second_street_line")
     private String street2;
 
-    @Column(name = "city")
     private String city;
 
-    @Column(name = "state")
     private String state;
 
-    @Column(name = "zip")
     private String zip;
 
-    @Column(name = "country")
     private String country;
 
     public Address() {
     }
 
-    public Address(String name,String street, String street2, String city, String state, String zip, String country) {
+    public Address(String firstName, String lastName, String street, String street2, String city, String state,
+            String zip, String country) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.street = street;
         this.street2 = street2;
         this.city = city;
@@ -69,16 +71,24 @@ public class Address {
         return id;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     public String getStreet() {
         return street;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public void setStreet(String street) {
@@ -127,8 +137,8 @@ public class Address {
 
     @Override
     public String toString() {
-        return "Address [id=" + id + ", street=" + street + ", street2=" + street2 + ", city=" + city + ", state=" + state + ", zip=" + zip + ", country=" + country + "]";
+        return "Address [id=" + id + ", street=" + street + ", street2=" + street2 + ", city=" + city + ", state="
+                + state + ", zip=" + zip + ", country=" + country + "]";
     }
-
 
 }

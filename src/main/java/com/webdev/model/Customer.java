@@ -24,7 +24,7 @@ public class Customer {
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
 
-    private String name;
+    private String username;
 
     @NaturalId
     private String email;
@@ -64,8 +64,8 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(String name, String email, String password, String phoneNumber) {
-        this.name = name;
+    public Customer(String username, String email, String password, String phoneNumber) {
+        this.username = username;
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
@@ -83,12 +83,12 @@ public class Customer {
         this.email = email;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -105,12 +105,6 @@ public class Customer {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    @Override
-    public String toString() {
-        return "Customer [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password
-                + ", phoneNumber=" + phoneNumber + "]";
     }
 
 }

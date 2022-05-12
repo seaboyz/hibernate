@@ -44,12 +44,23 @@ username is not saved in database
 ![](./images/Screen%20Shot%202022-05-06%20at%209.11.14%20PM.png)
 ![](./images/Screen%20Shot%202022-05-06%20at%209.12.51%20PM.png)
 
-#### UUID
+#### Primary Key
+##### @NatualId
+* When new Customer registers, the email should be unique, otherwise, it will throw an exception.
+![](/images/Screen%20Shot%202022-05-11%20at%208.24.38%20PM.png)
+![](/images/Screen%20Shot%202022-05-11%20at%208.24.12%20PM.png)
+
+##### @Id
+##### @GeneratedValue(strategy = GenerationType.AUTO)
+##### @Genericgenerator(name = "generator", strategy = "native")
+https://www.youtube.com/watch?v=rvaAx7r8lVY
+
+##### UUID
 ![](./images/Screen%20Shot%202022-05-07%20at%204.33.11%20AM.png)
 ![](images/Screen%20Shot%202022-05-07%20at%206.24.57%20AM.png)
 >https://thorben-janssen.com/generate-uuids-primary-keys-hibernate/
 
-#### interger Id
+##### interger Id
 ![](images/Screen%20Shot%202022-05-07%20at%2010.04.35%20AM.png)
 
 
@@ -65,15 +76,26 @@ username is not saved in database
 * A relationship is a link between two objects(Entity).
 * https://www.youtube.com/watch?v=C3icLzBtg8I
 
-#### Entity
+#### Entity vs Value Object
+* If you have a value object, you can't create a relationship between two value objects.
+* An value object is a object that has no meaning without other object.
+* An value object will not be saved in database.
+* An embedded objects will be saved in database 
+* An entity object is a object that can exist independently.
+* An entity object can have a relationship with other entity objects.
+* An entity object can't have a relationship with value objects.
+* An entity object can't have a relationship with itself.
+* An entity object will be saved in the database.
+#### Entity @Entity
 * An entity in DBMS (Database management System) is a real-world thing or a real-world object which is distinguishable from other objects in the real world. For example, a car is an entity. An attribute of an entity gives us information about the characteristic features of an entity.
 * Customer is an entity.
-* Address is an entity.
 * Product is an entity.
 * Cart is an entity.
-* CartItem is an entity.
 * Order is an entity.
-* OrderItem is an entity.
+#### Value Object @Data
+* Address is an value object.
+* CartItem is an value object.
+* OrderItem is an value object.
 
 #### relationship
 * `one` customer has `many` addresses
@@ -249,16 +271,7 @@ It's only from the hibernate...ORM, database schema, does not change. which one 
 </plugin>
 `mvn exec:java -Dexec.mainClass="com.webdev.App`
 
-#### Primary Key
-##### @NatualId
-* When new Customer registers, the email should be unique, otherwise, it will throw an exception.
-![](/images/Screen%20Shot%202022-05-11%20at%208.24.38%20PM.png)
-![](/images/Screen%20Shot%202022-05-11%20at%208.24.12%20PM.png)
 
-##### @Id
-##### @GeneratedValue(strategy = GenerationType.AUTO)
-##### @Genericgenerator(name = "generator", strategy = "native")
-https://www.youtube.com/watch?v=rvaAx7r8lVY
 ![]()
 ![]()
 ![]()
