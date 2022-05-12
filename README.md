@@ -7,6 +7,10 @@
 ### pragrammatic configuration
 ![](images/Screen%20Shot%202022-05-12%20at%203.46.39%20PM.png)
 
+### how to configure a exiting configuration
+* the programmatic configuration is the most common configuration, it will run faster than the xml configuration, and run after the xml configuration
+* it can override the xml configuration, but it will not override the programmatic configuration
+
 #### Add maven dependency
 
 #### hibernate
