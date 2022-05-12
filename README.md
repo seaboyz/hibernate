@@ -285,6 +285,13 @@ Then, it aggregates both sets of information and provides a domain object of the
 * `DAO` works as a data `mapping/access` layer, hiding ugly queries. However, a `repository` is a layer between `domains` and `data access layers`, hiding the complexity of collating data and preparing a domain object
 * `DAO` `can't be implemented` using a repository. However, a repository can use a DAO for accessing underlying storage
 
+### SessionFactory vs Session
+* `SessionFactory` is a factory for creating `Session` objects. However, `Session` is a `higher-level` concept, closer to the Domain objects
+![](images/Screen%20Shot%202022-05-12%20at%2010.34.10%20AM.png)
+
+### Transaction vs Session
+* https://www.youtube.com/watch?v=HcjHJLEbtRs&list=PLSEDryV9VNWGPUN0-2R1GopFRJSggVzAH
+
 
 #### CRUD
 #### READ

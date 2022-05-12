@@ -2,15 +2,17 @@ package com.webdev.dao;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public interface Dao<T> {
-    T add(T obj);
+    Optional<T> add(T t);
 
-    Optional<T> get(int id);
+    Optional<T> getById(UUID id);
 
     List<T> getAll();
 
-    T update(T obj);
+    T update(T t);
 
-    void delete(int id);
+    void delete(T t);
+
 }

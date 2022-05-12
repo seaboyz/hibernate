@@ -2,46 +2,52 @@ package com.webdev.dao;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import com.webdev.model.Customer;
 
 import org.hibernate.Session;
 
 public class CustomerDao implements Dao<Customer> {
-    private Session session;
+
+    Session session;
 
     public CustomerDao(Session session) {
         this.session = session;
     }
 
     @Override
-    public Customer add(Customer customer) {
+    public Optional<Customer> add(Customer customer) {
+        session.beginTransaction();
         session.save(customer);
         session.getTransaction().commit();
-        Customer savedCustomer = session.get(Customer.class, customer.getId());
-        session.close();
+        if (customer.getId() != null) {
+            return Optional.of(customer);
+        }
+        return Optional.empty();
 
-        return savedCustomer;
     }
 
     @Override
-    public Optional<Customer> get(int id) {
-        return Optional.ofNullable(session.get(Customer.class, id));
+    public Optional<Customer> getById(UUID id) {
+        return Optional.empty();
     }
 
     @Override
     public List<Customer> getAll() {
-        return session.createQuery("from Customer", Customer.class).list();
+        return null;
     }
 
     @Override
     public Customer update(Customer customer) {
-        session.update(customer);
-        return customer;
+        return null;
     }
 
     @Override
-    public void delete(int id) {
-        session.delete(get(id).get());
+    public void delete(Customer customer) {
+        session.beginTransaction();
+        session.delete(customer);
+        session.getTransaction().commit();
     }
+
 }

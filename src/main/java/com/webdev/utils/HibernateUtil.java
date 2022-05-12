@@ -1,14 +1,10 @@
 package com.webdev.utils;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class HibernateUtil // Hibernate utility class
-{
+public class HibernateUtil {
   private static SessionFactory sessionFactory;
-
-  private static Session session;
 
   private HibernateUtil() {
   }
@@ -20,22 +16,10 @@ public class HibernateUtil // Hibernate utility class
     return sessionFactory;
   }
 
-  public static Session getSession() {
-    if (session == null) {
-      session = getSessionFactory().openSession();
-    }
-    return session;
-  }
-
-  public static void closeSession(Session session) {
-    if (session != null) {
-      session.close();
-    }
-  }
-
   public static void closeSessionFactory() {
     if (sessionFactory != null) {
       sessionFactory.close();
     }
   }
+
 }

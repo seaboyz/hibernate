@@ -1,14 +1,15 @@
 package com.webdev.dao;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.Optional;
 
 import com.webdev.model.Customer;
-import com.webdev.utils.HibernateManager;
+import com.webdev.utils.HibernateUtil;
 
 import org.hibernate.Session;
-
+import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.AfterEach;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,8 +21,14 @@ public class CustomerDaoTest {
     @BeforeEach
     public void init() {
 
-        session = HibernateManager.getSession();
+        // get a sessionFactory
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+
+        // get a session
+        session = sessionFactory.openSession();
+
         customerDao = new CustomerDao(session);
+
         customer = new Customer(
                 "John Doe",
                 "john@example.com",
@@ -31,12 +38,12 @@ public class CustomerDaoTest {
 
     @AfterEach
     public void tearDown() {
-        HibernateManager.closeSession(session);
+        session.close();
     }
 
     @Test
     void testAdd() {
-        assertNotNull(customerDao.add(customer));
+        assertEquals(Optional.class, customerDao.add(customer));
     }
 
     @Test

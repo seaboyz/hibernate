@@ -1,12 +1,14 @@
 package com.webdev;
 
+import java.util.Optional;
+
+import com.webdev.dao.CustomerDao;
 import com.webdev.model.CartItem;
 import com.webdev.model.Customer;
 import com.webdev.model.Product;
+import com.webdev.utils.HibernateUtil;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 public class App {
         public static void main(String[] args) {
@@ -49,35 +51,24 @@ public class App {
                 // * the end of the java code >>>
 
                 // * <<< the begining of the hibernate code
+                // create a new session
+                Session session = HibernateUtil.getSessionFactory().openSession();
 
-                // configure the database
-                Configuration config = new Configuration();
+                CustomerDao customerDao = new CustomerDao(session);
 
-                // if no configuration file is found, use the default
-                // config.configure("hibernate.cfg.xml");
-                config.configure();
+                // add the customer to the database
+                Optional<Customer> optionalCustomer = customerDao.add(customer);
+                if (optionalCustomer.isPresent()) {
+                        System.out.println("Customer added successfully");
+                } else {
+                        System.out.println("Customer not added");
+                }
 
-                // build the session factory
-                SessionFactory sessionFactory = config.buildSessionFactory();
+                session.delete(customer);
 
-                // get the session
-                Session session = sessionFactory.openSession();
-
-                // start a transaction
-                session.beginTransaction();
-
-                // save the customer
-                session.save(customer);
-                session.save(product1);
-                session.save(product2);
-                session.save(cartItem);
-                session.save(cartItem2);
-
-                // commit the transaction
-                session.getTransaction().commit();
-
-                // close the session
                 session.close();
+
+                session.getTransaction().commit();
 
                 // * end of the hibernate code >>>
 
