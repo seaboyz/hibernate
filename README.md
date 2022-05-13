@@ -312,6 +312,9 @@ Then, it aggregates both sets of information and provides a domain object of the
 ### Transaction vs Session
 * https://www.youtube.com/watch?v=HcjHJLEbtRs&list=PLSEDryV9VNWGPUN0-2R1GopFRJSggVzAH
 
+### Transaction management
+![](images/05-12-22/Screen%20Shot%202022-05-12%20at%209.07.41%20PM.png)
+
 
 #### CRUD
 #### READ

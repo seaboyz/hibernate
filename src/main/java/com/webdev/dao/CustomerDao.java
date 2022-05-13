@@ -35,7 +35,7 @@ public class CustomerDao implements Dao<Customer> {
 
     @Override
     public List<Customer> getAll() {
-        return null;
+        return session.createQuery("from Customer", Customer.class).list();
     }
 
     @Override
