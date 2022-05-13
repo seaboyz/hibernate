@@ -345,10 +345,6 @@ Then, it aggregates both sets of information and provides a domain object of the
 #### merge() vs update()
 ![](images/05-12-22/Screen%20Shot%202022-05-12%20at%2010.39.30%20PM.png)
 
-### transient vs persistent vs detached (state)
-![](/images/transaction/Screen%20Shot%202022-05-13%20at%209.56.45%20AM.png)
-
-
 
 ## DAO
 #### CRUD
@@ -440,6 +436,31 @@ https://www.baeldung.com/hibernate-save-persist-update-merge-saveorupdate
 * save()
 * persist()
 * saveOrUpdate()
+
+### Session
+* persistence context - session
+We can think of persistence context as a container or first-level cache for all the objects that we loaded or saved to a database during a session.
+* The session is a logical transaction, with boundaries defined by the application's business logic.
+* we should always have a single instance of entity for every database record that we interact with during the session.
+* In Hibernate, the persistence context is represented by the org.hibernate.Session instance. For JPA, it's the javax.persistence.EntityManager. When we use Hibernate as a JPA provider, and operate via the EntityManager interface, the implementation of this interface basically wraps the underlying Session object. However, Hibernate Session provides a richer interface with more possibilities, so sometimes it's useful to work with Session directly.
+
+### transient vs persistent vs detached (state)
+![](/images/transaction/Screen%20Shot%202022-05-13%20at%209.56.45%20AM.png)
+
+#### transient 
+* This instance isn't, and ***never*** was, attached to a Session. This instance has no corresponding rows in the database; it's usually just a new object that we created to save to the database.
+
+#### persistent 
+* This instance is associated with a ***unique*** Session object. Upon ***flushing*** the Session to the database, this entity is guaranteed to have a ***corresponding consistent*** record in the ***database***. 
+* before flushing, it is always has a one-to-one relationship with a database record.
+* When the entity instance is in the persistent state, all the changes that we make to the mapped fields of this instance will be applied to the corresponding database records and fields ***upon flushing the Session***
+  
+#### detached
+* This instance was once attached to a Session (in a persistent state), but now it’s not. 
+* An instance enters detached state:
+* if we evict it from the context, 
+* clear or close the Session, 
+* put the instance through serialization/deserialization process.
 
 
 
