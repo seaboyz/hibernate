@@ -56,7 +56,7 @@ public class CustomerDaoTest {
     }
 
     @Test
-    void shouldNotAddEmp() {
+    void shouldNotAddEmptyCustomer() {
         Customer customer = new Customer();
         assertThrows(PropertyValueException.class, () -> customerDao.add(customer));
     }
@@ -103,15 +103,20 @@ public class CustomerDaoTest {
 
     @Test
     void testUpdate() {
-        Customer customer = new Customer();
-        customer.setId(UUID.randomUUID());
-        customer.setUsername("username");
-        customer.setEmail("email");
-        customer.setPassword("password");
-        customer.setPhoneNumber("phoneNumber");
+        Customer customer = new Customer(
+                "username",
+                "email",
+                "password",
+                "phoneNumber");
         customerDao.add(customer);
+        transaction.commit();
+        session.close();
+
+        session = sessionFactory.openSession();
+        customerDao = new CustomerDao(session);
+        transaction = session.beginTransaction();
         customer.setUsername("newUsername");
-        customerDao.update(customer);
-        assertEquals(customer.getUsername(), customerDao.getById(customer.getId()).get().getUsername());
+
+       
     }
 }

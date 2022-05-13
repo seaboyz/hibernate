@@ -323,10 +323,17 @@ Then, it aggregates both sets of information and provides a domain object of the
 ![](images/05-12-22/Screen%20Shot%202022-05-12%20at%2010.17.25%20PM.png)
 * prefer `persist()` over `save()`
 
+#### merge() vs update()
+![](images/05-12-22/Screen%20Shot%202022-05-12%20at%2010.39.30%20PM.png)
+
+### transient vs persistent
+
+
 
 #### CRUD
 #### READ
 ![](/images/Screen%20Shot%202022-05-08%20at%2012.27.34%20PM.png)
+@SelectBeforeUpdate
 
 <!-- TODO CREATE -->
 <!-- TODO UPDATE -->
