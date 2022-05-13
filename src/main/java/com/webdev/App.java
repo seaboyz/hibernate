@@ -18,6 +18,9 @@ public class App {
 				"email",
 				"password",
 				"phoneNumber");
+	
+		// after the object was created, it become a transient object
+
 
 		// before save, the customer object is not associated with the session
 		session.save(customer);
@@ -33,7 +36,8 @@ public class App {
 
 		session.getTransaction().commit();
 		// after commit, the customer object is saved to the database
-		// session.close();
+		session.close();
+		// after close, the session is closed and the session factory is closed
 
 	}
 }

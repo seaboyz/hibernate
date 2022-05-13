@@ -346,9 +346,9 @@ Then, it aggregates both sets of information and provides a domain object of the
 ![](images/05-12-22/Screen%20Shot%202022-05-12%20at%2010.39.30%20PM.png)
 
 ### transient vs persistent vs detached (state)
-#### transient
-* `transient` is a `state` of an object that is not yet persisted in the database.
-* 
+![](/images/transaction/Screen%20Shot%202022-05-13%20at%209.56.45%20AM.png)
+
+
 
 
 
@@ -356,12 +356,42 @@ Then, it aggregates both sets of information and provides a domain object of the
 #### CRUD
 https://www.dineshonjava.com/hibernate/crud-operations-using-hibernate-3/
 
+![]()
+
 <!-- TODO CREATE -->
+### CREATE
+![](images/transaction/Screen%20Shot%202022-05-13%20at%2010.04.36%20AM.png)
+#### transient
+* when new Customer() is created, it is in `transient` state
+#### persistent
+* when session.save() is called, it is in `persistent` state
+#### detached
+* when session.close() is called, it is in `detached` state
 
 <!-- TODO READ -->
+### READ
+![](images/transaction/Screen%20Shot%202022-05-13%20at%2010.07.32%20AM.png)
+#### persistent
+* when session.get() is called, it is in `persitent` state
+#### detached
 <!-- TODO UPDATE -->
+### UPDATE
+* there are two path to update a persistent object
+1. start from a session.get()
+2. start from a seesion.create()
+### DELETE
+* there are two path to delete a object
+  ![](images/transaction/Screen%20Shot%202022-05-13%20at%2010.15.11%20AM.png)
+ 1. session.delete(customer);
+* * hiberate convert a persistent object to transient object
+2. session.close()
+* * hibernate convert a transient object to detached object
+
 <!-- TODO DELETE -->
 
+### save(), persist(), update(), merge(), saveOrUpdate()
+https://www.baeldung.com/hibernate-save-persist-update-merge-saveorupdate
+![](images/transaction/2016-07-11_13-38-11-1024x551.webp)
 
 ### Add lombok (optional)
 ![](./images/Screen%20Shot%202022-05-06%20at%204.21.49%20PM.png)
