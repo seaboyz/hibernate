@@ -379,6 +379,14 @@ https://www.dineshonjava.com/hibernate/crud-operations-using-hibernate-3/
 * there are two path to update a persistent object
 1. start from a session.get()
 2. start from a seesion.create()
+### Customer UPDATE(Dao layer)
+1. sessionFactory.getCurrentSession()
+2. session.beginTransaction()
+2. Customer customer = session.get(Customer.class, 1);
+3. customer.setUsername("newusername");
+4. session.update(customer);
+5. session.getTransaction().commit();
+6. session.close(); 
 ### DELETE
 * there are two path to delete a object
   ![](images/transaction/Screen%20Shot%202022-05-13%20at%2010.15.11%20AM.png)
@@ -387,7 +395,6 @@ https://www.dineshonjava.com/hibernate/crud-operations-using-hibernate-3/
 2. session.close()
 * * hibernate convert a transient object to detached object
 
-<!-- TODO DELETE -->
 
 ### save(), persist(), update(), merge(), saveOrUpdate()
 https://www.baeldung.com/hibernate-save-persist-update-merge-saveorupdate
@@ -398,7 +405,10 @@ https://www.baeldung.com/hibernate-save-persist-update-merge-saveorupdate
 
 ### Detached to persistent
 ![](images/transaction/Screen%20Shot%202022-05-13%20at%201.04.51%20PM.png)
-#### Customer UPDATE process
+
+
+
+#### Customer UPDATE process(service layer)
 1. session.get(Customer.class, Customer.getId())
 2. close the session(the object is in `detached` state)
 3. serialize the object
@@ -406,8 +416,7 @@ https://www.baeldung.com/hibernate-save-persist-update-merge-saveorupdate
 5. front-end deserialize the object
 6. make a updated joson string and sent to back-end
 7. back-end deserialize the object
-8. ??? is the deserialized object in `persistent` state?
-9. 
+ 
 
 ### Add lombok (optional)
 ![](./images/Screen%20Shot%202022-05-06%20at%204.21.49%20PM.png)
