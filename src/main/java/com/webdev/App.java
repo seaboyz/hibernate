@@ -1,7 +1,9 @@
 package com.webdev;
 
-public class App {
-        public static void main(String[] args) {
+import com.webdev.utils.HibernateUtil;
 
-        }
+public class App {
+	public static void main(String[] args) {
+		HibernateUtil.getSessionFactory();
+	}
 }

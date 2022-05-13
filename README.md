@@ -31,7 +31,6 @@
 ![](images/configrations/Screen%20Shot%202022-05-13%20at%206.13.32%20AM.png)
 
 
-
 ### Add annotated class to hibernate
 ![](./images/Screen%20Shot%202022-05-06%20at%206.27.50%20AM.png)
 ![](./images/Screen%20Shot%202022-05-06%20at%206.28.06%20AM.png)
@@ -52,6 +51,12 @@
 ### Hibernate Testing
 ![](/images/Screen%20Shot%202022-05-06%20at%2011.54.48%20AM.png)
 >https://trello.com/c/LjsCTeyj/11-hibernate
+
+### When hiberate create a the connection
+* when configaration() load the configuration file.
+
+### When hiberate create table?
+* when add annotated class, hibernate will create table
 
 #### @Transient
 username is not saved in database

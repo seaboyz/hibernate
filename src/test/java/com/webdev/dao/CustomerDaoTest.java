@@ -8,7 +8,6 @@ import java.util.UUID;
 
 import com.webdev.model.Customer;
 import com.webdev.utils.HibernateTestUtil;
-import com.webdev.utils.HibernateUtil;
 
 import org.hibernate.PropertyValueException;
 import org.hibernate.Session;
