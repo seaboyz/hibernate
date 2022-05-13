@@ -393,6 +393,22 @@ https://www.dineshonjava.com/hibernate/crud-operations-using-hibernate-3/
 https://www.baeldung.com/hibernate-save-persist-update-merge-saveorupdate
 ![](images/transaction/2016-07-11_13-38-11-1024x551.webp)
 
+### object state 
+![](images/transaction/Screen%20Shot%202022-05-13%20at%201.01.40%20PM.png)
+
+### Detached to persistent
+![](images/transaction/Screen%20Shot%202022-05-13%20at%201.04.51%20PM.png)
+#### Customer UPDATE process
+1. session.get(Customer.class, Customer.getId())
+2. close the session(the object is in `detached` state)
+3. serialize the object
+4. sent the serialized object to front-end
+5. front-end deserialize the object
+6. make a updated joson string and sent to back-end
+7. back-end deserialize the object
+8. ??? is the deserialized object in `persistent` state?
+9. 
+
 ### Add lombok (optional)
 ![](./images/Screen%20Shot%202022-05-06%20at%204.21.49%20PM.png)
 ![](./images/Screen%20Shot%202022-05-06%20at%205.59.32%20AM.png)
