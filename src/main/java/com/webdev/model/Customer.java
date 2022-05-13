@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,7 +33,7 @@ public class Customer {
 
     @Column(name = "phone_number")
     private String phoneNumber;
-    
+
     // when save the customer, if there are any unsaved addresses, save them
     @OneToMany(mappedBy = "customer", cascade = CascadeType.PERSIST)
     private Set<Address> addresses = new HashSet<Address>();

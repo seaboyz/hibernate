@@ -18,10 +18,26 @@
   </properties>
 
   <dependencies>
+    <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>5.8.2</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>5.8.2</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-junit-jupiter</artifactId>
+      <version>4.4.0</version>
       <scope>test</scope>
     </dependency>
 
@@ -40,20 +56,27 @@
       <version>5.6.8.Final</version>
     </dependency>
 
-
-    <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok-maven-plugin -->
-    <!-- <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok-maven-plugin</artifactId>
-      <version>1.18.20.0</version>
-      <scope>provided</scope>
-    </dependency> -->
+    <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>2.1.212</version>
+      <scope>test</scope>
+    </dependency>
 
     <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-testing -->
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-testing</artifactId>
       <version>5.6.8.Final</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>2.1.212</version>
       <scope>test</scope>
     </dependency>
 
