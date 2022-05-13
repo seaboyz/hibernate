@@ -19,16 +19,7 @@ public class App {
 				"password",
 				"phoneNumber");
 
-		session.save(customer);
-		session.getTransaction().commit();
-		session.close();
-
-		session = sessionFactory.openSession();
-		session.beginTransaction();
-
-		customer.setUsername("username2");
 		session.update(customer);
-
 
 		// only the last change before commit is persisted to the database
 

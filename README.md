@@ -357,6 +357,7 @@ https://www.dineshonjava.com/hibernate/crud-operations-using-hibernate-3/
 
 <!-- TODO CREATE -->
 ### CREATE
+![](images/CURD/Screen%20Shot%202022-05-13%20at%204.52.30%20PM.png)
 ![](images/transaction/Screen%20Shot%202022-05-13%20at%2010.04.36%20AM.png)
 
 * when new Customer() is created, it is in `transient` state
@@ -404,9 +405,58 @@ https://www.dineshonjava.com/hibernate/crud-operations-using-hibernate-3/
 ### save(), persist(), update(), merge(), saveOrUpdate()
 https://www.baeldung.com/hibernate-save-persist-update-merge-saveorupdate
 ![](images/transaction/2016-07-11_13-38-11-1024x551.webp)
+#### session.persist()
+* session.persist(customer);
+* transient --> persistent
+* The generation of INSERT statements will occur only upon committing the transaction, or flushing or closing the session.
+* void return
+*  transient instance becomes persistent (and the operation cascades to all of its relations with cascade=PERSIST or cascade=ALL)
+*  if an instance is already persistent, then this call has no effect for this particular instance (but it still cascades to its relations with cascade=PERSIST or cascade=ALL).
+* If an instance is detached, we'll get an exception, either upon calling this method, or upon committing or flushing the session.
+* The id won't necessarily be non-null after we call this method, so we shouldn't rely upon it.
+
+#### session.save()
+* first assigning a generated identifier.” The method will return the Serializable value of this identifier
+`Long id = (Long) session.save(person);`
+`Person person = new Person();`
+`person.setName("John");`
+`Long id1 = (Long) session.save(person);`
+* The `id2` variable will differ from `id1`. The save call on a detached instance `creates a new persistent instance` and assigns it a new identifier, which results in a duplicate record in the database upon committing or flushing.
+
+#### session.merge()
+* The main intention of the merge method is to update a `persistent` entity instance with new field values from a `detached` entity instance.
+* For instance, suppose we have a RESTful interface with a method for retrieving a JSON-serialized object by its id to the caller, and a method that receives an updated version of this object from the caller. An entity that passed through such `serialization/deserialization` will appear in a `detached` state.
+* deerialize the object => detached entity object
+* finds an entity instance by id taken from the passed object (either an existing entity instance from the persistence context is retrieved, or a new instance loaded from the database)
+* copies fields from the passed object to this instance
+* returns a newly updated instance
+![](images/CURD/Screen%20Shot%202022-05-13%20at%204.52.30%20PM.png)
+* if the entity is detached, it copies upon an existing persistent entity.
+* if the entity is transient, it copies upon a newly created persistent entity.
+* this operation cascades for all relations with cascade=MERGE or cascade=ALL mapping.
+* if the entity is persistent, then this method call doesn't have an effect on it (but the cascading still takes place)
+
+### session.update()
+* return void
+* detached --> persistent
+* thorw `exception` if the entity is `persistent`
+![](images/CURD/Screen%20Shot%202022-05-13%20at%205.05.16%20PM.png)
+![](images/CURD/Screen%20Shot%202022-05-13%20at%205.06.00%20PM.png)
+
+### session.saveOrUpdate()
+* return void
+* will persist a newly created instance of Person:
+![](images/CURD/Screen%20Shot%202022-05-13%20at%205.13.49%20PM.png)
+
+
+### If we don't have any special requirements, we should stick to the `persist` and `merge` methods because they're standardized and will conform to the JPA specification.
 
 ### object state changes
+session.evict(person);
+Long id2 = (Long) session.save(person);
 ![](images/transaction/Screen%20Shot%202022-05-13%20at%201.01.40%20PM.png)
+
+
 
 ### ==> Transient
 * new()
@@ -415,6 +465,8 @@ https://www.baeldung.com/hibernate-save-persist-update-merge-saveorupdate
 * get()
 * load()
 * HQL query
+
+### Serialization, deserialization ==> Detached
 
 ### Persistent ==> Detached
 * session.close()
@@ -463,12 +515,23 @@ We can think of persistence context as a container or first-level cache for all 
 * put the instance through serialization/deserialization process.
 
 
+### session.getTransaction().commit()
+### session.flush()
+all of the methods (persist, save, update, merge, saveOrUpdate) don't immediately result in the corresponding SQL UPDATE or INSERT statements. The actual saving of data to the database occurs upon `committing` the transaction or `flushing` the Session.
+
+#### flush(): 
+Flushing is the process of synchronizing the underlying persistent store with persistable state held in memory.it `will` update or insert into your tables in the running transaction, but it may `not` commit those changes.
+
+#### Commit(): - the changes
+Commit will make the database commit.When you have a `persisted` object and you `change` a value on it, it becomes `dirty` and hibernate needs to flush these changes to your persistence layer.So You should `commit` but it also ends the unit of work.
 
 
 
 
 
- 
+
+
+
 
 ### Add lombok (optional)
 ![](./images/Screen%20Shot%202022-05-06%20at%204.21.49%20PM.png)
