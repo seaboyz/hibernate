@@ -48,6 +48,10 @@ public class CustomerDao implements Dao<Customer> {
 
     @Override
     public Customer update(Customer customer) {
+        // there are two ways to update a customer
+        // 1.make a new customer and merge it to the old one
+
+        // 2.get the customer from database and update it
         Session session = sessionFactory.openSession();
         session.update(customer);
         return session.get(Customer.class, customer.getId());

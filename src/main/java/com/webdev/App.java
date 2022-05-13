@@ -18,19 +18,17 @@ public class App {
 				"email",
 				"password",
 				"phoneNumber");
-	
-		// after the object was created, it become a transient object
 
-
-		// before save, the customer object is not associated with the session
 		session.save(customer);
-		// after save, the id is set, and the customer object is associated with the
-		// session
+		session.getTransaction().commit();
+		session.close();
 
-		// after save, any changes to the customer object are persisted to the database
-		customer.setUsername("newUsername");
-		// customer.setUsername("newUsername1");
-		// customer.setUsername("newUsername2");
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+
+		customer.setUsername("username2");
+		session.update(customer);
+
 
 		// only the last change before commit is persisted to the database
 

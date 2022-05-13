@@ -350,25 +350,25 @@ Then, it aggregates both sets of information and provides a domain object of the
 
 
 
-
-
 ## DAO
 #### CRUD
+#### ??? is it possible one object can be exist in multiple sessions???
+* Don't let it happend.
+* Treat every request as a single transaction.
 https://www.dineshonjava.com/hibernate/crud-operations-using-hibernate-3/
 
-![]()
+### every CRUD is a single transaction
 
 <!-- TODO CREATE -->
 ### CREATE
 ![](images/transaction/Screen%20Shot%202022-05-13%20at%2010.04.36%20AM.png)
-#### transient
+
 * when new Customer() is created, it is in `transient` state
-#### persistent
 * when session.save() is called, it is in `persistent` state
-#### detached
 * when session.close() is called, it is in `detached` state
 
-<!-- TODO READ -->
+
+
 ### READ
 ![](images/transaction/Screen%20Shot%202022-05-13%20at%2010.07.32%20AM.png)
 #### persistent
@@ -379,7 +379,16 @@ https://www.dineshonjava.com/hibernate/crud-operations-using-hibernate-3/
 * there are two path to update a persistent object
 1. start from a session.get()
 2. start from a seesion.create()
-### Customer UPDATE(Dao layer)
+#### Customer UPDATE process(service layer)
+* same object can be exited in diffrent sessions, but each session does not know about the other
+1. session.get(Customer.class, Customer.getId())
+2. close the session(the object is in `detached` state)
+3. serialize the object
+4. sent the serialized object to front-end
+5. front-end deserialize the object
+6. make a updated json string and sent to back-end
+7. back-end deserialize the object
+#### Customer UPDATE(Dao layer)
 1. sessionFactory.getCurrentSession()
 2. session.beginTransaction()
 2. Customer customer = session.get(Customer.class, 1);
@@ -400,22 +409,44 @@ https://www.dineshonjava.com/hibernate/crud-operations-using-hibernate-3/
 https://www.baeldung.com/hibernate-save-persist-update-merge-saveorupdate
 ![](images/transaction/2016-07-11_13-38-11-1024x551.webp)
 
-### object state 
+### object state changes
 ![](images/transaction/Screen%20Shot%202022-05-13%20at%201.01.40%20PM.png)
 
-### Detached to persistent
+### ==> Transient
+* new()
+
+### ==> Persistent
+* get()
+* load()
+* HQL query
+
+### Persistent ==> Detached
+* session.close()
+* evict()
+  
+### Persistent ==> Transient
+* save()
+* persit()
+* saveOrUpdate()
+
+### Detached ==> Persistent
 ![](images/transaction/Screen%20Shot%202022-05-13%20at%201.04.51%20PM.png)
+* lock()
+* update()
+* merge()
+* saveOrUpdate()
+
+### Transient ==> Persistent
+* save()
+* persist()
+* saveOrUpdate()
 
 
 
-#### Customer UPDATE process(service layer)
-1. session.get(Customer.class, Customer.getId())
-2. close the session(the object is in `detached` state)
-3. serialize the object
-4. sent the serialized object to front-end
-5. front-end deserialize the object
-6. make a updated joson string and sent to back-end
-7. back-end deserialize the object
+
+
+
+
  
 
 ### Add lombok (optional)
