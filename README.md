@@ -345,17 +345,20 @@ Then, it aggregates both sets of information and provides a domain object of the
 #### merge() vs update()
 ![](images/05-12-22/Screen%20Shot%202022-05-12%20at%2010.39.30%20PM.png)
 
-### transient vs persistent
+### transient vs persistent vs detached (state)
+#### transient
+* `transient` is a `state` of an object that is not yet persisted in the database.
+* 
 
 
 
+## DAO
 #### CRUD
 https://www.dineshonjava.com/hibernate/crud-operations-using-hibernate-3/
-#### READ
-![](/images/Screen%20Shot%202022-05-08%20at%2012.27.34%20PM.png)
-@SelectBeforeUpdate
 
 <!-- TODO CREATE -->
+
+<!-- TODO READ -->
 <!-- TODO UPDATE -->
 <!-- TODO DELETE -->
 

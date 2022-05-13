@@ -1,10 +1,5 @@
 package com.webdev.utils;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.net.URL;
-import java.util.Properties;
-
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -47,17 +42,18 @@ public class HibernateUtil {
 		}
 	}
 
-	private static Properties getProperties() throws IOException {
-		// load a properties file for testing purpose
-		// using h2 database
-		Properties properties = new Properties();
-		URL propertiesURL = Thread.currentThread()
-				.getContextClassLoader()
-				.getResource("hibernateTest.properties");
-		try (FileInputStream inputStream = new FileInputStream(propertiesURL.getFile())) {
-			properties.load(inputStream);
-		}
-		return properties;
-	}
+	// private static Properties getProperties() throws IOException {
+	// // load a properties file for testing purpose
+	// // using h2 database
+	// Properties properties = new Properties();
+	// URL propertiesURL = Thread.currentThread()
+	// .getContextClassLoader()
+	// .getResource("hibernateTest.properties");
+	// try (FileInputStream inputStream = new
+	// FileInputStream(propertiesURL.getFile())) {
+	// properties.load(inputStream);
+	// }
+	// return properties;
+	// }
 
 }

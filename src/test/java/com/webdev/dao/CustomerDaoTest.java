@@ -35,9 +35,8 @@ public class CustomerDaoTest {
     @BeforeEach
     public void setup() {
 
-        session = sessionFactory.openSession();
-        customerDao = new CustomerDao(session);
-        transaction = session.beginTransaction();
+        customerDao = new CustomerDao(sessionFactory);
+
     }
 
     @AfterEach
@@ -116,7 +115,7 @@ public class CustomerDaoTest {
         session.close();
 
         session = sessionFactory.openSession();
-        customerDao = new CustomerDao(session);
+        customerDao = new CustomerDao(sessionFactory);
         transaction = session.beginTransaction();
         customer.setUsername("newUsername");
 
