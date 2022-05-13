@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.webdev.dao.CustomerDaoTest
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.112 s - in com.webdev.dao.CustomerDaoTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.286 s - in com.webdev.dao.CustomerDaoTest

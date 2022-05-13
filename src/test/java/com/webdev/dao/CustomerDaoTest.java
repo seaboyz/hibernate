@@ -35,14 +35,12 @@ public class CustomerDaoTest {
         session = sessionFactory.openSession();
         customerDao = new CustomerDao(session);
         transaction = session.beginTransaction();
-        System.out.println(session.isConnected());
     }
 
     @AfterEach
     public void tearDown() {
         transaction.rollback();
         session.close();
-        System.out.println(session.isConnected());
     }
 
     @Test
