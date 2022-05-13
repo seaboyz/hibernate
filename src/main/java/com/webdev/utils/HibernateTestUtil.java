@@ -17,6 +17,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
+// progratic configure hibernate session factory and session
 public class HibernateTestUtil {
     private static SessionFactory sessionFactory;
 
@@ -39,10 +40,13 @@ public class HibernateTestUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         return sessionFactory;
     }
 
     private static Properties getProperties() throws IOException {
+        // load a properties file for testing purpose
+        // using h2 database
         Properties properties = new Properties();
         URL propertiesURL = Thread.currentThread()
                 .getContextClassLoader()

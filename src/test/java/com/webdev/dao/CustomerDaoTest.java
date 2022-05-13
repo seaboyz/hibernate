@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import com.webdev.model.Customer;
 import com.webdev.utils.HibernateTestUtil;
+import com.webdev.utils.HibernateUtil;
 
 import org.hibernate.PropertyValueException;
 import org.hibernate.Session;
@@ -26,7 +27,10 @@ public class CustomerDaoTest {
 
     @BeforeAll
     public static void beforeTests() {
+        // test againt in memory database
         sessionFactory = HibernateTestUtil.getSessionFactory();
+        // test against real database
+        // sessionFactory = HibernateUtil.getSessionFactory();
     }
 
     @BeforeEach
@@ -117,6 +121,5 @@ public class CustomerDaoTest {
         transaction = session.beginTransaction();
         customer.setUsername("newUsername");
 
-       
     }
 }

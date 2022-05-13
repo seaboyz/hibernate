@@ -13,10 +13,24 @@
 ![](/images/Screen%20Shot%202022-05-04%20at%204.24.03%20PM.png)
 ### The Hibernate way
 ![](./images/Screen%20Shot%202022-05-04%20at%204.34.08%20PM.png)
-### Add lombok (optional)
-![](./images/Screen%20Shot%202022-05-06%20at%204.21.49%20PM.png)
-![](./images/Screen%20Shot%202022-05-06%20at%205.59.32%20AM.png)
->https://mvnrepository.com/artifact/org.projectlombok/lombok-maven-plugin
+
+### 3 Ways of Configure Hibernate
+#### 1. hibernate.cfg.xml
+* configuring the connection
+![](images/configrations/Screen%20Shot%202022-05-13%20at%205.41.53%20AM.png)
+* configuring the mapping(annotated classes)
+![](images/configrations/Screen%20Shot%202022-05-13%20at%205.42.36%20AM.png)
+* configuring the session factory
+![](images/configrations/Screen%20Shot%202022-05-13%20at%205.44.36%20AM.png)
+
+#### 2. hibernate.properties
+* configuring the connection
+![](images/configrations/Screen%20Shot%202022-05-13%20at%205.46.56%20AM.png)
+![](images/configrations/Screen%20Shot%202022-05-13%20at%206.12.59%20AM.png)
+* configuring the mapping(annotated classes)
+![](images/configrations/Screen%20Shot%202022-05-13%20at%206.13.32%20AM.png)
+
+
 
 ### Add annotated class to hibernate
 ![](./images/Screen%20Shot%202022-05-06%20at%206.27.50%20AM.png)
@@ -331,6 +345,7 @@ Then, it aggregates both sets of information and provides a domain object of the
 
 
 #### CRUD
+https://www.dineshonjava.com/hibernate/crud-operations-using-hibernate-3/
 #### READ
 ![](/images/Screen%20Shot%202022-05-08%20at%2012.27.34%20PM.png)
 @SelectBeforeUpdate
@@ -339,6 +354,11 @@ Then, it aggregates both sets of information and provides a domain object of the
 <!-- TODO UPDATE -->
 <!-- TODO DELETE -->
 
+
+### Add lombok (optional)
+![](./images/Screen%20Shot%202022-05-06%20at%204.21.49%20PM.png)
+![](./images/Screen%20Shot%202022-05-06%20at%205.59.32%20AM.png)
+>https://mvnrepository.com/artifact/org.projectlombok/lombok-maven-plugin
 ![]()
 ![]()
 ![]()
