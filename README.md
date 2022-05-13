@@ -254,6 +254,26 @@ It's only from the hibernate...ORM, database schema, does not change. which one 
 * database
 ![](./images/Screen%20Shot%202022-05-09%20at%2011.30.01%20PM.png)
 
+
+### Cascade types
+https://github.com/eugenp/tutorials/tree/master/persistence-modules/jpa-hibernate-cascade-type
+https://www.baeldung.com/jpa-cascade-types
+#### CascadeType.ALL
+* CascadeType.ALL propagates all operations — including Hibernate-specific ones — from a `parent` to a `child` entity.
+#### @Cascade = CascadeType.PERSIST
+![](images/Screen%20Shot%202022-05-12%20at%204.25.31%20PM.png)
+* Cascade Type PERSIST propagates the persist operation from a `parent` to a `child` entity. 
+* when the customer entity is saved, the addresses entity belongs to the customer will be saved as well.
+#### @Cascade = CascadeType.REMOVE
+* Cascade Type REMOVE propagates the remove operation from a `parent` to a `child` entity.
+#### @Cascade = CascadeType.MERGE
+* Cascade Type MERGE propagates the merge operation from a `parent` to a `child` entity.
+#### @Cascade = CascadeType.REFRESH
+#### @Cascade = CascadeType.DETACH
+#### @Cascade = CascadeType.REPLICATE
+#### @Cascade = CascadeType.ALL
+
+
 ##### mvn exec
 <plugin>
     <groupId>org.codehaus.mojo</groupId>

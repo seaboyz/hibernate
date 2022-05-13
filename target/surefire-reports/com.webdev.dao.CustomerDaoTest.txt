@@ -1,26 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.webdev.dao.CustomerDaoTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 5, Skipped: 0, Time elapsed: 2.465 s <<< FAILURE! - in com.webdev.dao.CustomerDaoTest
-testAdd  Time elapsed: 2.42 s  <<< ERROR!
-java.lang.ExceptionInInitializerError
-	at com.webdev.dao.CustomerDaoTest.init(CustomerDaoTest.java:23)
-Caused by: org.hibernate.MappingException: component: com.webdev.model.Address property not found: id
-	at com.webdev.dao.CustomerDaoTest.init(CustomerDaoTest.java:23)
-
-testGet  Time elapsed: 0.003 s  <<< ERROR!
-java.lang.NoClassDefFoundError: Could not initialize class com.webdev.utils.HibernateManager
-	at com.webdev.dao.CustomerDaoTest.init(CustomerDaoTest.java:23)
-
-testDelete  Time elapsed: 0.004 s  <<< ERROR!
-java.lang.NoClassDefFoundError: Could not initialize class com.webdev.utils.HibernateManager
-	at com.webdev.dao.CustomerDaoTest.init(CustomerDaoTest.java:23)
-
-testGetAll  Time elapsed: 0.001 s  <<< ERROR!
-java.lang.NoClassDefFoundError: Could not initialize class com.webdev.utils.HibernateManager
-	at com.webdev.dao.CustomerDaoTest.init(CustomerDaoTest.java:23)
-
-testUpdate  Time elapsed: 0.004 s  <<< ERROR!
-java.lang.NoClassDefFoundError: Could not initialize class com.webdev.utils.HibernateManager
-	at com.webdev.dao.CustomerDaoTest.init(CustomerDaoTest.java:23)
-
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.125 s - in com.webdev.dao.CustomerDaoTest

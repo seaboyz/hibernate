@@ -18,19 +18,19 @@ public class CustomerDao implements Dao<Customer> {
 
     @Override
     public Optional<Customer> add(Customer customer) {
-        session.beginTransaction();
         session.save(customer);
-        session.getTransaction().commit();
-        if (customer.getId() != null) {
-            return Optional.of(customer);
-        }
-        return Optional.empty();
+        Customer savedCustomer = session.get(Customer.class, customer.getId());
 
+        if (savedCustomer != null) {
+            return Optional.of(savedCustomer);
+        } else {
+            return Optional.empty();
+        }
     }
 
     @Override
     public Optional<Customer> getById(UUID id) {
-        return Optional.empty();
+        return Optional.ofNullable(session.get(Customer.class, id));
     }
 
     @Override
@@ -44,10 +44,13 @@ public class CustomerDao implements Dao<Customer> {
     }
 
     @Override
+    public void delete(UUID id) {
+        session.delete(getById(id).get());
+    }
+
+    @Override
     public void delete(Customer customer) {
-        session.beginTransaction();
         session.delete(customer);
-        session.getTransaction().commit();
     }
 
 }

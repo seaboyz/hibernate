@@ -5,7 +5,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface Dao<T> {
-    Optional<T> add(T t);
+    Optional<T> add(T obj);
 
     Optional<T> getById(UUID id);
 
@@ -14,5 +14,7 @@ public interface Dao<T> {
     T update(T t);
 
     void delete(T t);
+
+    void delete(UUID id);
 
 }

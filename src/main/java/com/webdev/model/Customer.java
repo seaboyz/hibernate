@@ -23,27 +23,30 @@ public class Customer {
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
 
+    @Column(nullable = false, unique = true)
     private String username;
 
-    @NaturalId
+    @Column(nullable = false, unique = true)
     private String email;
 
+    @Column(nullable = false)
     private String password;
 
-    @Column(name = "phone_number")
+    @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
 
+    // when save the customer, if there are any unsaved addresses, save them
     @OneToMany(mappedBy = "customer")
     private Set<Address> addresses = new HashSet<Address>();
-
-    public void addAddress(Address address) {
-        this.addresses.add(address);
-        address.setCustomer(this);
-    }
 
     public Set<Address> getAddresses() {
         return addresses;
     }
+
+    // public void addAddress(Address address) {
+    // this.addresses.add(address);
+    // address.setCustomer(this);
+    // }
 
     @OneToMany(mappedBy = "customer")
     private Set<CartItem> cartItems = new HashSet<CartItem>();
