@@ -1,5 +1,6 @@
 package com.webdev.dao;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -18,7 +19,7 @@ public class CustomerDao implements Dao<Customer> {
 
     @Override
     public Optional<Customer> add(Customer customer) {
-        session.save(customer);
+        session.persist(customer);
         Customer savedCustomer = session.get(Customer.class, customer.getId());
 
         if (savedCustomer != null) {

@@ -315,6 +315,14 @@ Then, it aggregates both sets of information and provides a domain object of the
 ### Transaction management
 ![](images/05-12-22/Screen%20Shot%202022-05-12%20at%209.07.41%20PM.png)
 
+####  state changes
+![](images/05-12-22/Screen%20Shot%202022-05-12%20at%2010.12.50%20PM.png)
+
+#### persist() vs save()
+![](images/05-12-22/Screen%20Shot%202022-05-12%20at%2010.15.41%20PM.png)
+![](images/05-12-22/Screen%20Shot%202022-05-12%20at%2010.17.25%20PM.png)
+* prefer `persist()` over `save()`
+
 
 #### CRUD
 #### READ

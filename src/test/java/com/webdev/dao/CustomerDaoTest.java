@@ -53,7 +53,6 @@ public class CustomerDaoTest {
                 "password",
                 "phoneNumber");
         assert (customerDao.add(validatCustomer).isPresent());
-
     }
 
     @Test
