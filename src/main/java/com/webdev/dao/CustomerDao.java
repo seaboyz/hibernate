@@ -2,6 +2,7 @@ package com.webdev.dao;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import com.webdev.model.Customer;
 
@@ -15,17 +16,19 @@ public class CustomerDao implements Dao<Customer> {
     }
 
     @Override
-    public Customer add(Customer customer) {
+    public Optional<Customer> add(Customer customer) {
         session.save(customer);
-        session.getTransaction().commit();
         Customer savedCustomer = session.get(Customer.class, customer.getId());
-        session.close();
 
-        return savedCustomer;
+        if (savedCustomer != null) {
+            return Optional.of(savedCustomer);
+        } else {
+            return Optional.empty();
+        }
     }
 
     @Override
-    public Optional<Customer> get(int id) {
+    public Optional<Customer> getById(UUID id) {
         return Optional.ofNullable(session.get(Customer.class, id));
     }
 
@@ -41,7 +44,12 @@ public class CustomerDao implements Dao<Customer> {
     }
 
     @Override
-    public void delete(int id) {
-        session.delete(get(id).get());
+    public void delete(UUID id) {
+        session.delete(getById(id).get());
+    }
+
+    @Override
+    public void delete(Customer customer) {
+        session.delete(customer);
     }
 }

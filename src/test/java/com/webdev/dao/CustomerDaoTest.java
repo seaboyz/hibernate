@@ -1,5 +1,10 @@
 package com.webdev.dao;
 
+import static org.junit.Assert.assertThrows;
+
+import java.util.Optional;
+
+import com.webdev.model.Customer;
 import com.webdev.utils.HibernateTestUtil;
 
 import org.hibernate.Session;
@@ -38,7 +43,20 @@ public class CustomerDaoTest {
     }
 
     @Test
-    void testAdd() {
+    void shouldAdd() {
+        Customer customer = new Customer();
+        assertThrows(Exception.class, () -> customerDao.add(customer));
+        Customer validatCustomer = new Customer(
+                "username",
+                "email",
+                "password",
+                "phoneNumber");
+        assert (customerDao.add(validatCustomer).isPresent());
+
+    }
+
+    @Test
+    void shouldNotAddCustomerWithTheSameEmail() {
 
     }
 
