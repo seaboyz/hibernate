@@ -12,6 +12,7 @@ import com.webdev.utils.HibernateUtil;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -57,14 +58,29 @@ public class OrderDaoTest {
         orderItemList.add(orderItem);
 
         Order order = new Order(customer, shippingAddress, orderItemList);
-        
+
         session.beginTransaction();
+        session.save(product);
         session.save(customer);
         session.save(order);
         // the orderItemList is saved automatically, because the cascade type is ALL
         session.getTransaction().commit();
         session.close();
 
+    }
+
+    @AfterEach
+    public void tearDown() {
+        session.close();
+        // clean up the database
+        session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.createQuery("delete from OrderItem").executeUpdate();
+        session.createQuery("delete from Order").executeUpdate();
+        session.createQuery("delete from Customer").executeUpdate();
+        session.createQuery("delete from Product").executeUpdate();
+        session.getTransaction().commit();
+        session.close();
     }
 
     @Test
