@@ -1,26 +1,21 @@
 package com.webdev.model;
 
-import java.util.UUID;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "addresses")
 public class Address {
 
     @Id // primary key
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "id", updatable = false, nullable = false)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
@@ -30,24 +25,28 @@ public class Address {
         this.customer = customer;
     }
 
-    @Column(name = "first_name")
+    @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @Column(name = "last_name")
+    @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Column(name = "first_street_line")
+    @Column(name = "first_street_line", nullable = false)
     private String street;
 
-    @Column(name = "second_street_line")
+    @Column(name = "second_street_line", nullable = false)
     private String street2;
 
+    @Column(name = "city", nullable = false)
     private String city;
 
+    @Column(name = "state", nullable = false)
     private String state;
 
+    @Column(name = "zip", nullable = false)
     private String zip;
 
+    @Column(name = "phone", nullable = false)
     private String country;
 
     public Address() {
@@ -65,7 +64,7 @@ public class Address {
         this.country = country;
     }
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 

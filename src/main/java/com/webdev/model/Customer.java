@@ -105,4 +105,10 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
+    @Override
+    public String toString() {
+        return "Customer [id=" + id + ", username=" + username + ", email=" + email + ", password=" + password
+                + ", phoneNumber=" + phoneNumber + "]";
+    }
+
 }
