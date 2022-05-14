@@ -6,60 +6,49 @@ import com.webdev.model.Customer;
 import com.webdev.utils.HibernateUtil;
 
 import org.hibernate.SessionFactory;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class CustomerDaoTest {
     private static SessionFactory sessionFactory;
-    private CustomerDao customerDao;
+    private static CustomerDao customerDao;
 
     @BeforeAll
-    public static void beforeTests() {
+    public static void init() {
         sessionFactory = HibernateUtil.getSessionFactory();
-    }
-
-    @BeforeEach
-    public void setup() {
         customerDao = new CustomerDao(sessionFactory);
-    }
-
-    @AfterEach
-    public void tearDown() {
-        sessionFactory.close();
     }
 
     @Test
     void testAdd() {
         Customer customer = new Customer(
-                "username",
-                "email",
+                "username1",
+                "email1",
                 "password",
                 "phoneNumber");
 
-        assert customerDao.add(customer) != null;
+        assertNotNull(customerDao.add(customer));
     }
 
     @Test
     void testGet() {
         Customer customer = new Customer(
-                "username",
-                "email",
+                "username2",
+                "email2",
                 "password",
                 "phoneNumber");
 
         customerDao.add(customer);
 
-        assert customerDao.get(customer.getId()) != null;
+        assertNotNull(customerDao.get(customer.getId()));
 
     }
 
     @Test
     void testGetAll() {
         Customer customer = new Customer(
-                "username",
-                "email",
+                "username3",
+                "email3",
                 "password",
                 "phoneNumber");
 
@@ -72,8 +61,8 @@ public class CustomerDaoTest {
     @Test
     void testUpdate() {
         Customer customer = new Customer(
-                "username",
-                "email",
+                "username4",
+                "email4",
                 "password",
                 "phoneNumber");
 
@@ -88,8 +77,8 @@ public class CustomerDaoTest {
     @Test
     void testDelete() {
         Customer customer = new Customer(
-                "username",
-                "email",
+                "username5",
+                "email5",
                 "password",
                 "phoneNumber");
 
@@ -98,7 +87,6 @@ public class CustomerDaoTest {
         customerDao.delete(customer.getId());
 
         assert customerDao.getAll().size() == 0;
-
 
     }
 }
