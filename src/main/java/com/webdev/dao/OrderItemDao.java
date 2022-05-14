@@ -1,36 +1,35 @@
 package com.webdev.dao;
 
-import java.util.Optional;
+import java.util.List;
 
-import com.webdev.model.Order;
+import com.webdev.model.OrderItem;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-public class OrderDao {
+public class OrderItemDao {
     private SessionFactory sessionFactory;
 
-    public OrderDao(SessionFactory sessionFactory) {
+    public OrderItemDao(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
-    // add a new order
-    public void add(Order order) {
+    public OrderItem add(OrderItem orderItem) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.save(order);
+        session.save(orderItem);
         session.getTransaction().commit();
         session.close();
+        return orderItem;
     }
 
-    // get a order by id
-    public Optional<Order> get(Integer id) {
+    public List<OrderItem> getOrderItemListByOrderId(Integer id) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        Optional<Order> order = Optional.ofNullable(session.get(Order.class, id));
+        List<OrderItem> orderItemList = session.createQuery("from OrderItem where order_id = :id", OrderItem.class)
+                .setParameter("id", id).list();
         session.getTransaction().commit();
         session.close();
-        return order;
+        return orderItemList;
     }
-
 }
