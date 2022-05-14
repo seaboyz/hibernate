@@ -15,12 +15,13 @@ public class OrderDao {
     }
 
     // add a new order
-    public void add(Order order) {
+    public Integer add(Order order) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.save(order);
+        Integer id = (Integer) session.save(order);
         session.getTransaction().commit();
         session.close();
+        return id;
     }
 
     // get a order by id
