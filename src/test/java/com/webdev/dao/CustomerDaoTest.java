@@ -1,123 +1,92 @@
 package com.webdev.dao;
 
-import static org.junit.Assert.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.util.ArrayList;
-import java.util.UUID;
+import static org.junit.Assert.assertNotNull;
 
 import com.webdev.model.Customer;
-import com.webdev.utils.HibernateTestUtil;
+import com.webdev.utils.HibernateUtil;
 
-import org.hibernate.PropertyValueException;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class CustomerDaoTest {
     private static SessionFactory sessionFactory;
-    private Session session;
-    private Transaction transaction;
-    private CustomerDao customerDao;
+    private static CustomerDao customerDao;
 
     @BeforeAll
-    public static void beforeTests() {
-        // test againt in memory database
-        sessionFactory = HibernateTestUtil.getSessionFactory();
-        // test against real database
-        // sessionFactory = HibernateUtil.getSessionFactory();
-    }
-
-    @BeforeEach
-    public void setup() {
-
+    public static void init() {
+        sessionFactory = HibernateUtil.getSessionFactory();
         customerDao = new CustomerDao(sessionFactory);
-
-    }
-
-    @AfterEach
-    public void tearDown() {
-        transaction.rollback();
-        session.close();
     }
 
     @Test
-    void shouldAdd() {
-        Customer customer = new Customer();
-        assertThrows(Exception.class, () -> customerDao.add(customer));
-        Customer validatCustomer = new Customer(
-                "username",
-                "email",
+    void testAdd() {
+        Customer customer = new Customer(
+                "username1",
+                "email1",
                 "password",
                 "phoneNumber");
-        assert (customerDao.add(validatCustomer).isPresent());
+
+        assertNotNull(customerDao.add(customer));
     }
 
     @Test
-    void shouldNotAddEmptyCustomer() {
-        Customer customer = new Customer();
-        assertThrows(PropertyValueException.class, () -> customerDao.add(customer));
-    }
+    void testGet() {
+        Customer customer = new Customer(
+                "username2",
+                "email2",
+                "password",
+                "phoneNumber");
 
-    @Test
-    void shouldDelete() {
-        Customer customer = new Customer();
-        customer.setId(UUID.randomUUID());
-        customer.setUsername("username");
-        customer.setEmail("email");
-        customer.setPassword("password");
-        customer.setPhoneNumber("phoneNumber");
         customerDao.add(customer);
-        customerDao.delete(customer.getId());
-        assert (!customerDao.getById(customer.getId()).isPresent());
+
+        assertNotNull(customerDao.get(customer.getId()));
+
     }
 
     @Test
-    void shouldGetCustomerById() {
-        Customer customer = new Customer();
-        customer.setId(UUID.randomUUID());
-        customer.setUsername("username");
-        customer.setEmail("email");
-        customer.setPassword("password");
-        customer.setPhoneNumber("phoneNumber");
-        customerDao.add(customer);
-        assert (customerDao.getById(customer.getId()).isPresent());
-    }
+    void testGetAll() {
+        Customer customer = new Customer(
+                "username3",
+                "email3",
+                "password",
+                "phoneNumber");
 
-    @Test
-    void shouldGetListOfCustomers() {
-        Customer customer = new Customer();
-        customer.setId(UUID.randomUUID());
-        customer.setUsername("username");
-        customer.setEmail("email");
-        customer.setPassword("password");
-        customer.setPhoneNumber("phoneNumber");
         customerDao.add(customer);
-        assert (customerDao.getAll().size() == 1);
-        assert (customerDao.getAll().get(0).getId().equals(customer.getId()));
-        assertEquals(ArrayList.class, customerDao.getAll().getClass());
+
+        assert customerDao.getAll().size() == 1;
 
     }
 
     @Test
     void testUpdate() {
         Customer customer = new Customer(
-                "username",
-                "email",
+                "username4",
+                "email4",
                 "password",
                 "phoneNumber");
-        customerDao.add(customer);
-        transaction.commit();
-        session.close();
 
-        session = sessionFactory.openSession();
-        customerDao = new CustomerDao(sessionFactory);
-        transaction = session.beginTransaction();
-        customer.setUsername("newUsername");
+        customerDao.add(customer);
+
+        customer.setEmail("email2");
+
+        assertNotNull(customerDao.update(customer));
+
+    }
+
+    @Test
+    void testDelete() {
+        Customer customer = new Customer(
+                "username5",
+                "email5",
+                "password",
+                "phoneNumber");
+
+        customerDao.add(customer);
+
+        customerDao.delete(customer.getId());
+
+        assert customerDao.getAll().size() == 0;
 
     }
 }
