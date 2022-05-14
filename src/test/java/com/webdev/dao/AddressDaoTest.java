@@ -63,9 +63,9 @@ public class AddressDaoTest {
         // session is closed in userdao.add()
 
         // check if the address was added to the database
-        Optional<Address> addressFromDb = addressDao.get(address.getId());
-        assertTrue(addressFromDb.isPresent());
-        assertEquals(address.toString(), addressFromDb.get().toString());
+        session = sessionFactory.openSession();
+        Address addressFromDb = session.get(Address.class, address.getId());
+        assertEquals(address.toString(), addressFromDb.toString());
     }
 
     @Test
@@ -80,7 +80,10 @@ public class AddressDaoTest {
                 "zip",
                 "country");
 
-        addressDao.add(address);
+        session.beginTransaction();
+        session.save(address);
+        session.getTransaction().commit();
+        session.close();
         // session is closed in userdao.add()
 
         // check if the address was added to the database
