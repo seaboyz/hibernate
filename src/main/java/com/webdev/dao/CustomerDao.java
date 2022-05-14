@@ -10,7 +10,7 @@ import org.hibernate.SessionFactory;
 
 public class CustomerDao implements Dao<Customer> {
 
-    SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
 
     public CustomerDao(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
@@ -80,10 +80,10 @@ public class CustomerDao implements Dao<Customer> {
     }
 
     @Override
-    public void delete(Customer t) {
+    public void delete(Customer customer) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.delete(t);
+        session.delete(customer);
         session.getTransaction().commit();
         session.close();
     }
