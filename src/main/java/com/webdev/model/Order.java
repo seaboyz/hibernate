@@ -28,7 +28,7 @@ public class Order {
     private Customer customer;
 
     // once the order is saved, the order items are saved in the order_items table
-    @OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private Set<OrderItem> orderItemList = new HashSet<OrderItem>();
 
     // shipping address
@@ -51,6 +51,7 @@ public class Order {
         this.shippingAddress = shippingAddress;
         this.orderItemList = orderItemList;
         this.total = orderItemList.stream().mapToDouble(OrderItem::getSubtotal).sum();
+        orderItemList.forEach(orderItem -> orderItem.setOrder(this));
     }
 
     public Integer getId() {
