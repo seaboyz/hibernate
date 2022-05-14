@@ -21,7 +21,7 @@ public class CustomerDao implements Dao<Customer> {
 
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.persist(customer);
+        session.save(customer);
         session.getTransaction().commit();
         session.close();
         return customer;

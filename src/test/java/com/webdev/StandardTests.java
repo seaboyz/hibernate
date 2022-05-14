@@ -1,11 +1,9 @@
 package com.webdev;
 
-import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class StandardTests {
@@ -23,16 +21,16 @@ public class StandardTests {
         assert (true);
     }
 
-    @Test
-    public void test() {
-        fail("Not yet implemented");
-    }
+    // @Test
+    // public void test() {
+    // fail("Not yet implemented");
+    // }
 
-    @Test
-    @Disabled("for demonstration purposes")
-    void skippedTest() {
-        // not executed
-    }
+    // @Test
+    // @Disabled("for demonstration purposes")
+    // void skippedTest() {
+    // // not executed
+    // }
 
     @AfterEach
     public void tearDown() throws Exception {

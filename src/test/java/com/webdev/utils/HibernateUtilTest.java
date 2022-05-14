@@ -21,7 +21,7 @@ public class HibernateUtilTest {
     private Session session;
 
     @BeforeAll
-    public static void setUpBeforeClass() throws Exception {
+    public static void setUpBeforeAllTests() throws Exception {
         sessionFactory = HibernateUtil.getSessionFactory();
         System.out.println("SessionFactory created.");
     }
@@ -29,9 +29,9 @@ public class HibernateUtilTest {
     @BeforeEach
     public void openSession() {
         session = sessionFactory.openSession();
-    }
+    }  
 
-    @AfterEach
+    @AfterEach   
     public void closeSession() {
         if (session != null)
             session.close();
@@ -44,7 +44,6 @@ public class HibernateUtilTest {
 
         session.getTransaction().commit();
         session.close();
-
     }
 
     @AfterAll
@@ -60,7 +59,7 @@ public class HibernateUtilTest {
         session.beginTransaction();
 
         Customer customer1 = new Customer(
-                "username2",
+                "username1",
                 "email1",
                 "password",
                 "phoneNumber");
@@ -71,6 +70,28 @@ public class HibernateUtilTest {
 
         assertTrue(id > 0);
 
+    }
+
+    @Test
+    public void testGet() {
+        Customer customer = new Customer(
+                "username1",
+                "email1",
+                "password",
+                "phoneNumber");
+        session.beginTransaction();
+        session.save(customer);
+        session.getTransaction().commit();
+        session.close();
+        // then customer becomes detached
+
+        // start a new session
+        // get customer from database
+        session = sessionFactory.openSession();
+        session.beginTransaction();
+        Customer getCustomer = session.get(Customer.class, customer.getId());
+
+        assertEquals("username1", getCustomer.getUsername());
     }
 
     @Test
@@ -107,27 +128,7 @@ public class HibernateUtilTest {
 
     }
 
-    @Test
-    public void testGet() {
-        Customer customer = new Customer(
-                "username1",
-                "email1",
-                "password",
-                "phoneNumber");
-        session.beginTransaction();
-        session.save(customer);
-        session.getTransaction().commit();
-        session.close();
-        // then customer becomes detached
-
-        // start a new session
-        // get customer from database
-        session = sessionFactory.openSession();
-        session.beginTransaction();
-        Customer getCustomer = session.get(Customer.class, customer.getId());
-
-        assertEquals("username1", getCustomer.getUsername());
-    }
+  
 
     @Test
     public void testList() {
