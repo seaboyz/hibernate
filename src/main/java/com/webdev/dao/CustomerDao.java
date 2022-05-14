@@ -19,13 +19,13 @@ public class CustomerDao implements Dao<Customer> {
 
     @Override
     public Customer add(Customer customer) {
+        
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.persist(customer);
         session.getTransaction().commit();
 
         return customer;
-
     }
 
     @Override

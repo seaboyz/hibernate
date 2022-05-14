@@ -7,21 +7,18 @@ import com.webdev.model.Customer;
 import com.webdev.utils.HibernateUtil;
 
 import org.hibernate.SessionFactory;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class CustomerDaoTest {
     private static SessionFactory sessionFactory;
-    private static CustomerDao xcustomerDao;
+    private static CustomerDao customerDao;
 
     @BeforeAll
     public static void init() {
         sessionFactory = HibernateUtil.getSessionFactory();
         customerDao = new CustomerDao(sessionFactory);
     }
-
 
     @Test
     void testAdd() {

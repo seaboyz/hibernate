@@ -16,7 +16,7 @@
         <property name="dialect">org.hibernate.dialect.PostgreSQL82Dialect</property>
 
         <!-- Drop and re-create the database  -->
-        <property name="hibernate.hbm2ddl.auto">create</property>
+        <property name="hibernate.hbm2ddl.auto">create-drop</property>
         <!-- Names the annotated entity class -->
         <mapping class="com.webdev.model.Customer" />
         <mapping class="com.webdev.model.Address" />

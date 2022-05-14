@@ -5,14 +5,10 @@ import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
 	private static SessionFactory sessionFactory;
-
-	private HibernateUtil() {
-	}
-
 	// configure hibernate session factory and session
 	// using default xml configuration file
 	public static SessionFactory getSessionFactory() {
-		if (sessionFactory == null) {
+	
 
 			// first way - hibernate.cfg.xml
 			sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
@@ -32,15 +28,11 @@ public class HibernateUtil {
 			// e.printStackTrace();
 			// }
 
+			return sessionFactory;
 		}
-		return sessionFactory;
+		
 	}
 
-	public static void closeSessionFactory() {
-		if (sessionFactory != null) {
-			sessionFactory.close();
-		}
-	}
 
 	// private static Properties getProperties() throws IOException {
 	// // load a properties file for testing purpose
