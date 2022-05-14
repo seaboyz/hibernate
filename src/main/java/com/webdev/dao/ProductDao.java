@@ -1,9 +1,8 @@
-package com.webdev.dao.images;
+package com.webdev.dao;
 
 import java.util.List;
 import java.util.Optional;
 
-import com.webdev.dao.Dao;
 import com.webdev.model.Product;
 
 import org.hibernate.Session;

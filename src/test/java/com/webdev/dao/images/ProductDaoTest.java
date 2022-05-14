@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Optional;
 
+import com.webdev.dao.ProductDao;
 import com.webdev.model.Product;
 import com.webdev.utils.HibernateUtil;
 
