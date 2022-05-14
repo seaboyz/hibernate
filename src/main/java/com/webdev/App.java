@@ -1,17 +1,16 @@
 package com.webdev;
 
+import com.webdev.dao.CustomerDao;
 import com.webdev.model.Customer;
 import com.webdev.utils.HibernateUtil;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 public class App {
 	public static void main(String[] args) {
 
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		CustomerDao customerDao = new CustomerDao(sessionFactory);
 
 		Customer customer = new Customer(
 				"username",
@@ -19,14 +18,12 @@ public class App {
 				"password",
 				"phoneNumber");
 
-		session.update(customer);
+		customerDao.add(customer);
 
-		// only the last change before commit is persisted to the database
+		customer.setEmail("email2");
 
-		session.getTransaction().commit();
-		// after commit, the customer object is saved to the database
-		session.close();
-		// after close, the session is closed and the session factory is closed
+		customerDao.update(customer);
 
+		
 	}
 }
