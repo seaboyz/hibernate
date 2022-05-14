@@ -1,10 +1,9 @@
 package com.webdev.model;
 
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -15,29 +14,22 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.GenericGenerator;
-
 @Entity
 @Table(name = "orders")
 public class Order {
 
     @Id // primary key
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
-    private UUID id;
-
-    @Column(name = "created_at")
-    @CreationTimestamp
-    private LocalDateTime createdAt;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToMany(mappedBy = "order")
-    private Set<OrderItem> orderDetails = new HashSet<OrderItem>();
+    // once the order is saved, the order items are saved in the order_items table
+    @OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST)
+    private Set<OrderItem> orderItemList = new HashSet<OrderItem>();
 
     // shipping address
     @Embedded
@@ -47,18 +39,22 @@ public class Order {
 
     private double total;
 
-    public Order(Customer customer, ShippingAddress shippingAddress, double total) {
+    public Order() {
+    }
+
+    // there is no meaning to have an order without a customer
+    // there is no meaning to have an order without an order item
+    // there is no meaning to have an order without a shipping address
+    // total should be calculated from the order items
+    public Order(Customer customer, ShippingAddress shippingAddress, Set<OrderItem> orderItemList) {
         this.customer = customer;
         this.shippingAddress = shippingAddress;
-        this.total = total;
+        this.orderItemList = orderItemList;
+        this.total = orderItemList.stream().mapToDouble(OrderItem::getSubtotal).sum();
     }
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
     }
 
     public Customer getCustomer() {
@@ -66,21 +62,21 @@ public class Order {
     }
 
     public Set<OrderItem> getOrderDetails() {
-        return orderDetails;
+        return orderItemList;
     }
 
     public double getTotal() {
         return total;
     }
 
-    public void setTotal(double total) {
-        this.total = total;
+    public ShippingAddress getShippingAddress() {
+        return shippingAddress;
     }
 
-    public void addProduct(Product product, int quantity) {
-        OrderItem orderDetail = new OrderItem(product, this, quantity, product.getPrice() * quantity);
-        orderDetails.add(orderDetail);
-        total += orderDetail.getSubtotal();
+    @Override
+    public String toString() {
+        return "Order [id=" + id + ", createdAt=" + ", customer=" + ", shippingAddress=" + shippingAddress
+                + ", total=" + total + "]";
     }
 
 }

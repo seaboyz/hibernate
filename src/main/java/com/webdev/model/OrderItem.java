@@ -34,11 +34,12 @@ public class OrderItem {
     public OrderItem() {
     }
 
-    public OrderItem(Product product, Order order, int quantity, double subtotal) {
+    // subtotal should be calculated from the product price and quantity
+    public OrderItem(Product product, Order order, int quantity) {
         this.product = product;
         this.order = order;
         this.quantity = quantity;
-        this.subtotal = subtotal;
+        this.subtotal = product.getPrice() * quantity;
     }
 
     public UUID getId() {

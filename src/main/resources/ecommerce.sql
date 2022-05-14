@@ -4,6 +4,7 @@ create database qianggao_p2;
 SELECT * FROM customers;
 
 DELETE from customers;
+DELETE from orders;
 
 
 

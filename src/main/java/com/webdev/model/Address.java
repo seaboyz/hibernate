@@ -21,10 +21,6 @@ public class Address {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
@@ -62,6 +58,10 @@ public class Address {
         this.state = state;
         this.zip = zip;
         this.country = country;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public Integer getId() {
