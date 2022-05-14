@@ -23,7 +23,7 @@ public class CustomerDao implements Dao<Customer> {
         session.beginTransaction();
         session.persist(customer);
         session.getTransaction().commit();
-        session.close();
+
         return customer;
 
     }
@@ -34,7 +34,7 @@ public class CustomerDao implements Dao<Customer> {
         session.beginTransaction();
         Optional<Customer> customer = Optional.ofNullable(session.get(Customer.class, id));
         session.getTransaction().commit();
-        session.close();
+
         return customer;
     }
 
@@ -45,7 +45,7 @@ public class CustomerDao implements Dao<Customer> {
         List<Customer> customers = session.createQuery("from Customer", Customer.class).list();
 
         session.getTransaction().commit();
-        session.close();
+
         return customers;
     }
 
@@ -66,7 +66,7 @@ public class CustomerDao implements Dao<Customer> {
         session.merge(customerToUpdate);
 
         session.getTransaction().commit();
-        session.close();
+
         return customerToUpdate;
     }
 
@@ -77,7 +77,7 @@ public class CustomerDao implements Dao<Customer> {
         Customer customer = session.get(Customer.class, id);
         session.delete(customer);
         session.getTransaction().commit();
-        session.close();
+
     }
 
     @Override
@@ -86,6 +86,6 @@ public class CustomerDao implements Dao<Customer> {
         session.beginTransaction();
         session.delete(t);
         session.getTransaction().commit();
-        session.close();
+
     }
 }

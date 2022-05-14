@@ -1,23 +1,27 @@
 package com.webdev.dao;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.webdev.model.Customer;
 import com.webdev.utils.HibernateUtil;
 
 import org.hibernate.SessionFactory;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class CustomerDaoTest {
     private static SessionFactory sessionFactory;
-    private static CustomerDao customerDao;
+    private static CustomerDao xcustomerDao;
 
     @BeforeAll
     public static void init() {
         sessionFactory = HibernateUtil.getSessionFactory();
         customerDao = new CustomerDao(sessionFactory);
     }
+
 
     @Test
     void testAdd() {
@@ -54,7 +58,7 @@ public class CustomerDaoTest {
 
         customerDao.add(customer);
 
-        assert customerDao.getAll().size() == 1;
+        assert customerDao.getAll().size() == 3;
 
     }
 
@@ -68,7 +72,7 @@ public class CustomerDaoTest {
 
         customerDao.add(customer);
 
-        customer.setEmail("email2");
+        customer.setEmail("email6");
 
         assertNotNull(customerDao.update(customer));
 
@@ -86,7 +90,7 @@ public class CustomerDaoTest {
 
         customerDao.delete(customer.getId());
 
-        assert customerDao.getAll().size() == 0;
+        assertEquals(2, customerDao.getAll().size());
 
     }
 }
