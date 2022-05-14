@@ -336,7 +336,8 @@ Then, it aggregates both sets of information and provides a domain object of the
 
 ####  state changes
 ![](images/05-12-22/Screen%20Shot%202022-05-12%20at%2010.12.50%20PM.png)
-
+![](images/transaction/2016-07-11_13-38-11-1024x551.webp)
+![](/images/transaction/qMzDt.png)
 #### persist() vs save()
 ![](images/05-12-22/Screen%20Shot%202022-05-12%20at%2010.15.41%20PM.png)
 ![](images/05-12-22/Screen%20Shot%202022-05-12%20at%2010.17.25%20PM.png)
@@ -404,7 +405,7 @@ https://www.dineshonjava.com/hibernate/crud-operations-using-hibernate-3/
 
 ### save(), persist(), update(), merge(), saveOrUpdate()
 https://www.baeldung.com/hibernate-save-persist-update-merge-saveorupdate
-![](images/transaction/2016-07-11_13-38-11-1024x551.webp)
+
 #### session.persist()
 * session.persist(customer);
 * transient --> persistent
@@ -470,7 +471,8 @@ Long id2 = (Long) session.save(person);
 
 ### Persistent ==> Detached
 * session.close()
-* evict()
+* session.commit()
+* session.evict()
   
 ### Persistent ==> Transient
 * save()
