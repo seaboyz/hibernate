@@ -1,6 +1,5 @@
 package com.webdev.dao;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -19,53 +18,74 @@ public class CustomerDao implements Dao<Customer> {
     }
 
     @Override
-    public Optional<Customer> add(Customer customer) {
+    public Customer add(Customer customer) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-
-        Serializable id = session.save(customer);
+        session.persist(customer);
         session.getTransaction().commit();
         session.close();
+        return customer;
 
-        if (id != null) {
-            return Optional.of(customer);
-        } else {
-            return Optional.empty();
-        }
     }
 
     @Override
-    public Optional<Customer> getById(UUID id) {
+    public Optional<Customer> get(UUID id) {
         Session session = sessionFactory.openSession();
-        return Optional.ofNullable(session.get(Customer.class, id));
+        session.beginTransaction();
+        Optional<Customer> customer = Optional.ofNullable(session.get(Customer.class, id));
+        session.getTransaction().commit();
+        session.close();
+        return customer;
     }
 
     @Override
     public List<Customer> getAll() {
         Session session = sessionFactory.openSession();
-        return session.createQuery("from Customer", Customer.class).list();
+        session.beginTransaction();
+        List<Customer> customers = session.createQuery("from Customer", Customer.class).list();
+
+        session.getTransaction().commit();
+        session.close();
+        return customers;
     }
 
     @Override
     public Customer update(Customer customer) {
-        // there are two ways to update a customer
-        // 1.make a new customer and merge it to the old one
-
-        // 2.get the customer from database and update it
         Session session = sessionFactory.openSession();
-        session.update(customer);
-        return session.get(Customer.class, customer.getId());
+        session.beginTransaction();
+
+        Customer customerToUpdate = session.get(Customer.class, customer.getId());
+
+        session.evict(customerToUpdate);
+
+        customerToUpdate.setUsername(customer.getUsername());
+        customerToUpdate.setEmail(customer.getEmail());
+        customerToUpdate.setPassword(customer.getPassword());
+        customerToUpdate.setPhoneNumber(customer.getPhoneNumber());
+
+        session.merge(customerToUpdate);
+
+        session.getTransaction().commit();
+        session.close();
+        return customerToUpdate;
     }
 
     @Override
     public void delete(UUID id) {
         Session session = sessionFactory.openSession();
-        session.delete(getById(id).get());
+        session.beginTransaction();
+        Customer customer = session.get(Customer.class, id);
+        session.delete(customer);
+        session.getTransaction().commit();
+        session.close();
     }
 
     @Override
-    public void delete(Customer customer) {
-
+    public void delete(Customer t) {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.delete(t);
+        session.getTransaction().commit();
+        session.close();
     }
-
 }
