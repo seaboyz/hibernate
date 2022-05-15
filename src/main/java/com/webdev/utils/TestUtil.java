@@ -17,6 +17,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
+//  this class is used to create a SessionFactory object for testing purposes
 // progratic configure hibernate session factory and session
 public class TestUtil {
     private static SessionFactory sessionFactory;
