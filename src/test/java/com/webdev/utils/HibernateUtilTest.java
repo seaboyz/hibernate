@@ -22,20 +22,19 @@ public class HibernateUtilTest {
 
     @BeforeAll
     public static void setUpBeforeAllTests() throws Exception {
-        sessionFactory = HibernateUtil.getSessionFactory();
+        sessionFactory = TestUtil.getSessionFactory();
         System.out.println("SessionFactory created.");
     }
 
     @BeforeEach
     public void openSession() {
         session = sessionFactory.openSession();
-    }  
+    }
 
-    @AfterEach   
+    @AfterEach
     public void closeSession() {
         if (session != null)
             session.close();
-        System.out.println("Session closed\n");
 
         // remove all customers from the database
         session = sessionFactory.openSession();
@@ -127,8 +126,6 @@ public class HibernateUtilTest {
         assertEquals("username2", updatCustomer.getUsername());
 
     }
-
-  
 
     @Test
     public void testList() {

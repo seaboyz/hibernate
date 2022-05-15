@@ -18,7 +18,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
 // progratic configure hibernate session factory and session
-public class HibernateTestUtil {
+public class TestUtil {
     private static SessionFactory sessionFactory;
 
     public static SessionFactory getSessionFactory() {
@@ -50,7 +50,7 @@ public class HibernateTestUtil {
         Properties properties = new Properties();
         URL propertiesURL = Thread.currentThread()
                 .getContextClassLoader()
-                .getResource("hibernateTest.properties");
+                .getResource("test.properties");
         try (FileInputStream inputStream = new FileInputStream(propertiesURL.getFile())) {
             properties.load(inputStream);
         }
