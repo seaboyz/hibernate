@@ -35,22 +35,19 @@ public class OrderService {
 
         Customer customer = customerService.getCustomerById(customerId);
 
-        // convert products to OrderItemList
         Set<OrderItem> orderItemList = new HashSet<>();
 
-        // 3. create an orderItem list
         products.forEach((productId, quantity) -> {
             Product product = productService.getProductById(productId);
             orderItemList.add(new OrderItem(product, quantity));
         });
-        // 4. create a new order using the customer and orderItemList and the address
+
         Order order = new Order(customer, shippingAddress, orderItemList);
-        // 5. save shipping address as address to address list belongs to the customer
-        // in the database
+
         addressService.addAddressToCustomer(customerId, shippingAddress);
-        // 6. save the order to the database
+
         Integer orderId = orderDao.add(order);
-        // 7. return the orderId
+
         return orderId;
     }
 
