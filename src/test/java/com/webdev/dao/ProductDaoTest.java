@@ -1,4 +1,4 @@
-package com.webdev.dao.images;
+package com.webdev.dao;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
