@@ -70,7 +70,7 @@
     - [SessionFactory vs Session](#sessionfactory-vs-session)
     - [Transaction vs Session](#transaction-vs-session)
     - [Transaction management](#transaction-management)
-      - [state changes](#state-changes)
+      - [session](#session)
       - [commit() vs flush()](#commit-vs-flush)
       - [persist() vs save()](#persist-vs-save)
       - [merge() vs update()](#merge-vs-update)
@@ -93,7 +93,16 @@
     - [session.update()](#sessionupdate)
     - [session.saveOrUpdate()](#sessionsaveorupdate)
     - [If we don't have any special requirements, we should stick to the `persist` and `merge` methods because they're standardized and will conform to the JPA specification.](#if-we-dont-have-any-special-requirements-we-should-stick-to-the-persist-and-merge-methods-because-theyre-standardized-and-will-conform-to-the-jpa-specification)
-    - [object state changes](#object-state-changes)
+    - [Object state changes](#object-state-changes)
+        - [transient](#transient-1)
+        - [persistent](#persistent-1)
+        - [detached](#detached-1)
+        - [Saving and Reattaching an Entity](#saving-and-reattaching-an-entity)
+          - [Saving a Transient Entity](#saving-a-transient-entity)
+        - [Saving a Detached Entity](#saving-a-detached-entity)
+      - [Nested Entities](#nested-entities)
+          - [Persisting Nested Entities](#persisting-nested-entities)
+          - [Cascade Persist](#cascade-persist)
     - [==> Transient](#-transient)
     - [==> Persistent](#-persistent)
     - [Serialization, deserialization ==> Detached](#serialization-deserialization--detached)
@@ -101,11 +110,11 @@
     - [Persistent ==> Transient](#persistent--transient)
     - [Detached ==> Persistent](#detached--persistent)
     - [Transient ==> Persistent](#transient--persistent)
-    - [Session](#session)
+    - [Session](#session-1)
     - [transient vs persistent vs detached (state)](#transient-vs-persistent-vs-detached-state)
-      - [transient](#transient-1)
-      - [persistent](#persistent-1)
-      - [detached](#detached-1)
+      - [transient](#transient-2)
+      - [persistent](#persistent-2)
+      - [detached](#detached-2)
     - [session.getTransaction().commit()](#sessiongettransactioncommit)
     - [session.flush()](#sessionflush)
       - [flush():](#flush)
@@ -451,10 +460,13 @@ https://www.youtube.com/watch?v=68vPf2OGfro&t=599s&ab_channel=KarpadoOfficial
 ### Transaction management
 ![](images/05-12-22/Screen%20Shot%202022-05-12%20at%209.07.41%20PM.png)
 
-####  state changes
-![](images/05-12-22/Screen%20Shot%202022-05-12%20at%2010.12.50%20PM.png)
-![](images/transaction/2016-07-11_13-38-11-1024x551.webp)
-![](/images/transaction/qMzDt.png)
+#### session
+* The Session interface is the main tool used to communicate with Hibernate. 
+* It provides an API enabling us to create, read, update, and delete persistent objects. The session has a simple lifecycle. 
+* We open it, perform some operations, and then close it.
+
+
+
 #### commit() vs flush()
 * `flush()`: 
 * * Flushing is the process of synchronizing the underlying persistent store with persistable state held in memory.it will update or insert into your tables in the running transaction, but it may not commit those changes.
@@ -576,12 +588,92 @@ https://www.baeldung.com/hibernate-save-persist-update-merge-saveorupdate
 
 ### If we don't have any special requirements, we should stick to the `persist` and `merge` methods because they're standardized and will conform to the JPA specification.
 
-### object state changes
-session.evict(person);
-Long id2 = (Long) session.save(person);
+### Object state changes
 ![](images/transaction/Screen%20Shot%202022-05-13%20at%201.01.40%20PM.png)
+##### transient
+* An object we haven't attached to any session is in the transient state. 
+* Since it was never persisted, it doesn't have any representation in the database. 
+* Because no session is aware of it, it won't be saved automatically.
+`Session session = openSession();`
+`UserEntity userEntity = new UserEntity("John");`
+`assertThat(session.contains(userEntity)).isFalse();`
+
+##### persistent
+* An object that we've associated with a session is in the persistent state. 
+* We either **saved** it or **read** it from a persistence context, so it represents some row in the database.
+* Alternatively, we may use the **save** method. The difference is that the persist method will just save an object, and the save method will additionally generate its **identifier** if that's needed.
+`Session session = openSession();`
+`UserEntity userEntity = new UserEntity("John");`
+`session.persist(userEntity);`
+`assertThat(session.contains(userEntity)).isTrue();`
 
 
+##### detached
+* When we close the session, all objects inside it become detached.
+*  Although they still represent rows in the database, they're no longer managed by any session:
+`session.persist(userEntity);`
+`session.close();`
+`assertThat(session.isOpen()).isFalse();`
+`assertThatThrownBy(() -> session.contains(userEntity));`
+
+##### Saving and Reattaching an Entity
+###### Saving a Transient Entity
+* Let's create a new entity and save it to the database. When we first construct the object, it'll be in the transient state.
+* To persist our new entity, we'll use the persist method:(save() will get the primary key)
+`UserEntity userEntity = new UserEntity("John");`
+`session.persist(userEntity);`
+
+##### Saving a Detached Entity
+* If we close the previous session, our objects will be in a detached state. 
+* Similarly to the previous example, they're represented in the database but they aren't currently managed by any session. 
+* We can make them persistent again using the merge method:
+`UserEntity userEntity = new UserEntity("John");`
+`session.persist(userEntity);`
+`session.close();`
+`session.merge(userEntity);`
+
+#### Nested Entities
+`@Entity()`
+`@Table(name = "customers")`
+`public class Customer {`
+    `@OneToMany(mappedBy = "customer")`
+    `private Set<Address> addresses = new HashSet<Address>();`
+    `}`
+If we try to update it now, we'll get an exception:
+
+`
+assertThatThrownBy(() -> {
+            session.saveOrUpdate(customer);
+            transaction.commit();
+});`
+That's happening because Hibernate doesn't know what to do with the transient nested entity.
+
+###### Persisting Nested Entities
+`session.persist(address);`
+`address.setCustomer(customer);`
+`customer.getAddresses().add(address);`
+`session.persist(customer);`
+
+###### Cascade Persist
+`@Entity()`
+`@Table(name = "customers", cascade = CascadeType.Persist)`
+`public class Customer {`
+    `@OneToMany(mappedBy = "customer")`
+    `private Set<Address> addresses = new HashSet<Address>();`
+    `}`
+`address.setCustomer(customer);`
+`customer.getAddresses().add(address);`
+`session.persist(customer);`
+
+
+
+
+
+
+
+![](images/05-12-22/Screen%20Shot%202022-05-12%20at%2010.12.50%20PM.png)
+![](images/transaction/2016-07-11_13-38-11-1024x551.webp)
+![](/images/transaction/qMzDt.png)
 
 ### ==> Transient
 * new()
@@ -595,7 +687,7 @@ Long id2 = (Long) session.save(person);
 
 ### Persistent ==> Detached
 * session.close()
-* session.commit()
+* ***session.commit()***
 * session.evict()
   
 ### Persistent ==> Transient

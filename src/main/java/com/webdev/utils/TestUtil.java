@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Properties;
 
+import javax.persistence.EntityManager;
+
 import com.webdev.model.Address;
 import com.webdev.model.CartItem;
 import com.webdev.model.Customer;
@@ -43,6 +45,10 @@ public class TestUtil {
         }
 
         return sessionFactory;
+    }
+
+    public static EntityManager getEntityManager() {
+        return getSessionFactory().createEntityManager();
     }
 
     private static Properties getProperties() throws IOException {
