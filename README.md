@@ -325,6 +325,8 @@ Then, it aggregates both sets of information and provides a domain object of the
 * `DAO` `can't be implemented` using a repository. However, a repository can use a DAO for accessing underlying storage
 
 ### SessionFactory vs Session
+* `SessionFactory` is a `factory` of `sessions`. However, `Session` is a `session` of `persistence`
+* `SessionFactory` has to be a singleton.
 https://www.youtube.com/watch?v=68vPf2OGfro&t=599s&ab_channel=KarpadoOfficial
 * `SessionFactory` is a factory for creating `Session` objects. However, `Session` is a `higher-level` concept, closer to the Domain objects
 ![](images/Screen%20Shot%202022-05-12%20at%2010.34.10%20AM.png)
